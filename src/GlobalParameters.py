@@ -1,10 +1,13 @@
 """
-Global parameter class object. Specified class to store all model parametes, such as transmission power and noise floor.
+Global parameter class object. Specified class to store all model parametes,
+such as transmission power and noise floor.
 MUST be called in every project file.
 
 """
 
+
 class GlobalParameters:
+
     R = None
     Bn = None
     whiteNoiseVariance =  None

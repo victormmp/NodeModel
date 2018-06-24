@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="786e5a4c-a619-4c8e-ab66-fefa55ff232e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/GlobalParameters.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LinkService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modelagem-teste.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modelagem-teste.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NetNode.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/NetNode.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NodeService.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/NodeService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GlobalParameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GlobalParameters.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,10 +20,22 @@
       <file leaf-file-name="NodeService.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/NodeService.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+            <state relative-caret-position="182">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LinkService.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/LinkService.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="65">
+              <caret line="5" column="12" lean-forward="true" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -32,16 +45,16 @@
         <entry file="file://$PROJECT_DIR$/src/NetNode.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="806">
-              <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+              <caret line="62" selection-start-line="62" selection-end-line="62" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GlobalParameters.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GlobalParameters.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GlobalParameters.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="4" column="3" lean-forward="true" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+            <state relative-caret-position="338">
+              <caret line="26" selection-start-line="26" selection-end-line="26" />
             </state>
           </provider>
         </entry>
@@ -64,6 +77,7 @@
         <option value="$PROJECT_DIR$/src/NetNode.py" />
         <option value="$PROJECT_DIR$/src/NodeService.py" />
         <option value="$PROJECT_DIR$/src/GlobalParameters.py" />
+        <option value="$PROJECT_DIR$/src/LinkService.py" />
       </list>
     </option>
   </component>
@@ -98,8 +112,16 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Environments" />
+    <property name="settings.editor.selected.configurable" value="http.certificates" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="modelagem-teste" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="modelagem-teste" />
+      </console-settings>
+    </option>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -130,7 +152,7 @@
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24963397" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24963397" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.3286385" />
       <window_info anchor="bottom" id="Version Control" order="7" />
@@ -220,27 +242,37 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/NetLayout.py" />
+    <entry file="file://$PROJECT_DIR$/src/NetNode.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="806">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/NodeService.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+        <state relative-caret-position="182">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/NetNode.py">
+    <entry file="file://$PROJECT_DIR$/src/GlobalParameters.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="806">
-          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+        <state relative-caret-position="338">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GlobalParameters.py">
+    <entry file="file://$PROJECT_DIR$/src/LinkService.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="4" column="3" lean-forward="true" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+        <state relative-caret-position="65">
+          <caret line="5" column="12" lean-forward="true" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
