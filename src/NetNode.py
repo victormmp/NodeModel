@@ -40,7 +40,7 @@ class Link:
     def __init__(self, nodeA, nodeB):
         self.nodeA = nodeA
         self.nodeB = nodeB
-        self.distance = self.getDistance(nodeA, nodeB)
+        self.distance = self.getDistance()
 
     def getLQI(self):
         return self.lqi

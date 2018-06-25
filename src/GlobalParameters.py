@@ -21,6 +21,10 @@ class GlobalParameters:
     pathLossExp = None
     std_db = None
     d0 = None
+    defaultPower = None
+    defaultRate = None
+    limiar_snr = None
+    limiar_snr_delta = None
 
     def __init__(self):
         pass
