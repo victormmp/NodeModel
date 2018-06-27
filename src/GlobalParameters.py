@@ -3,8 +3,24 @@ Global parameter class object. Specified class to store all model parametes,
 such as transmission power and noise floor.
 MUST be called in every project file.
 
-"""
+================================================================================
+1. CONSIDERATIONS
+1.1 Path Loss Exp
 
+-------------------------------------------------------
+|     ENVIRONMENT               | PATH LOSS EXPONENT  |
+-------------------------------------------------------
+| Free Space                    |           2         |
+| Urban area cellular radio     |       2.7 to 3.5    |
+| Shadowed urban cel radio      |         3 to 5      |
+| Inside a building             |       1.6 to 1.8    |
+| Obstructed in building        |         4 to 6      |
+| Obstructed in factory         |         2 to 3      |
+-------------------------------------------------------
+
+
+"""
+import src.LinkService as linkService
 
 class GlobalParameters:
 
@@ -13,11 +29,11 @@ class GlobalParameters:
     whiteNoiseVariance = None
     defaultPower = 0.2              # Transmission power
     Pr = None                       # Received power available
-    Gt = 1                          # Effective transmitter antenna area
-    Gr = 1                          # Effective receiver antenna area
+    Gt = 1                          # Effective transmitter antenna gain
+    Gr = 1                          # Effective receiver antenna gain
     freq = 2.4e9                    # Transmission frequency
     lamb = 3e8/freq                 # Wavelength of the transmitted signal
-    L = 1                           # Distance between transmitter and receiver
+    L = 1                           # System loss factor not related to the propagation
     ht = 1
     hr = 1
     pathLossExp = 2
@@ -31,18 +47,9 @@ class GlobalParameters:
         pass
 
     def initialize(self):
-        self.getPr()
+        self.Pr = linkService.friss(self.defaultPower, self.Gt, self.Gr, self.lamb, self.d0, self.L)
         self.setWhiteNoiseVariance()
 
-    def getPr(self):
-        """
-        Pr is the power available at the receiver antenna
-        :return:
-        """
-        pass
-
-    def friis(self):
-        pass
 
     def setWhiteNoiseVariance(self):
         self.whiteNoiseVariance = self.Pr/1e4
