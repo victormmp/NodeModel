@@ -75,8 +75,27 @@ def shadowing(Pt, lamb, d0, d, pathLossExp):
     return pr
 
 
-def getPahLoss():
-    pass
+def getPahLoss(Pt, Pr):
+    """
+    Path loss attenuation in dB for a free space link. Can be calculated as:
+
+                       Pr
+    PL(dB) = - 10 log(----)
+                       Pt
+    or
+
+                      Gt * Gr * lamb^2
+    PL(dB) = -10 log(------------------)
+                       (4 * pi * d)^2
+
+    :param Pt: Transmitter power
+    :param Pr: Receiver power
+    :return: Returns the path loss attenuation in dB
+    """
+
+    pl = -10 * math.log10(Pr/Pt)
+
+    return pl
 
 
 ################################################################################
