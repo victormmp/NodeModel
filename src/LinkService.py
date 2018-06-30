@@ -83,7 +83,9 @@ def friss(d):
 def shadowing(d):
     #TODO: Get shadowing based on friss and PathLoss
 
-    pr = gp.defaultPower * (gp.lamb / 4 * math.pi * gp.d0) ^ 2 * (gp.d0 / d) ^ gp.pathLossExp
+    pr = friss(d) * math.pow(10,) #TODO: Terminar aqui
+
+    # pr = gp.defaultPower * (gp.lamb / 4 * math.pi * gp.d0) ^ 2 * (gp.d0 / d) ^ gp.pathLossExp
 
     return pr
 
@@ -106,7 +108,7 @@ def getPahLoss(Pt, Pr):
     :return: Returns the path loss attenuation in dB
     """
 
-    pl = -10 * math.log10(Pr / Pt)
+    pl = -10 * gp.pathLossExp * math.log10(Pr / Pt)
 
     return pl
 
