@@ -1,6 +1,4 @@
 from src.NetNode import *
-# from NetNode import *
-
 import numpy as np
 import math
 import logging
@@ -11,7 +9,7 @@ def getLinkList(nodeList):
     Generates a list with all possible links considering all nodes positions.
 
     :param nodeList: List of nodes. Contains all nodes positions on the
-    distribuition.
+    distribution.
     :return: Returns a list with all the possible links.
     """
     if type(nodeList) is not np.ndarray:
@@ -32,22 +30,35 @@ def getLinkList(nodeList):
 
 
 def calculateLinkPRR(link):
-    # TODO: Write consistent method
 
-    SNR = getSNR()
-    Arq = None
-    prr = (1 - 0.5 * (math.exp(-(SNR / 2) * (1 / (gp.R / gp.Bn))))) ^ (8 * Arq)
+
+    SNR = getSNR(shadowing(link.distance))
+    prr = (1 - 0.5 * (math.exp(-(SNR / 2) * (1 / (gp.R / gp.Bn))))) ^ (8 * gp.arq)
 
     return prr
 
 
-def getSNR():
-    # TODO: Get consistent SNR function.
+def getSNR(Pr, PrInterf = 0):
+    """
+    Signal Noise Ratio basic calculation, defined as transmitted power divided by noise power (from other transmissions
+    plus white noise power).
 
-    pass
+                          Pr
+    SNR (dB) = -------------------------
+                (PrInterf + WhiteNoise)
+
+    :param Pr: Transmitted power in Watts.
+    :param PrInterf: Power from other transmissions interference. Typically zero.
+    :return: Returns the white noise value in dB.
+    """
+
+    snrPower = Pr/(PrInterf + gp.whiteNoiseVariance)
+    snr = convertTodB(snrPower)
+
+    return snr
 
 
-def friss(Pt, Gt, Gr, lamb, d, L):
+def friss(d):
     """
     Friss formula, used to determine the received power. Is defined as:
 
@@ -64,13 +75,15 @@ def friss(Pt, Gt, Gr, lamb, d, L):
     :return: Signal power at receiver
     """
 
-    pr = (Pt * Gt * Gr * lamb) / ((4 * math.pi * d) ** 2 * L)
+    pr = (gp.defaultPower * gp.Gt * gp.Gr * gp.lamb) / ((4 * math.pi * d) ** 2 * gp.L)
 
     return pr
 
 
-def shadowing(Pt, lamb, d0, d, pathLossExp):
-    pr = Pt * (lamb / 4 * math.pi * d0) ^ 2 * (d0 / d) ^ pathLossExp
+def shadowing(d):
+    #TODO: Get shadowing based on friss and PathLoss
+
+    pr = gp.defaultPower * (gp.lamb / 4 * math.pi * gp.d0) ^ 2 * (gp.d0 / d) ^ gp.pathLossExp
 
     return pr
 
@@ -96,6 +109,16 @@ def getPahLoss(Pt, Pr):
     pl = -10 * math.log10(Pr / Pt)
 
     return pl
+
+
+def convertTodB(value):
+    """
+    Returns the specified value in dB.
+    :param value: The desired value to be converted
+    :return: The value in dB
+    """
+
+    return 20 * math.log10(value)
 
 
 # ============================| EXECUTION ROUTINE |=============================
