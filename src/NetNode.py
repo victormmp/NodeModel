@@ -1,12 +1,15 @@
 # Node class object.
 import math
+import logging
 
+# logging.basicConfig(filename="src/logs.log")
 
 class Node:
 
     def __init__(self, xPos=None, yPos=None):
         self.xPos = xPos
         self.yPos = yPos
+
 
     def setCoordinates(self, latitude, longitude):
         self.latitude = latitude

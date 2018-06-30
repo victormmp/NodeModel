@@ -8,7 +8,7 @@ MUST be called in every project file.
 1.1 Path Loss Exp
 
 -------------------------------------------------------
-|     ENVIRONMENT               | PATH LOSS EXPONENT  |
+|         ENVIRONMENT           | PATH LOSS EXPONENT  |
 -------------------------------------------------------
 | Free Space                    |           2         |
 | Urban area cellular radio     |       2.7 to 3.5    |
@@ -21,6 +21,9 @@ MUST be called in every project file.
 
 """
 import src.LinkService as linkService
+import logging
+
+# logger = logging.getLogger("src.GlobalParameters")
 
 class GlobalParameters:
 
@@ -49,6 +52,7 @@ class GlobalParameters:
     def initialize(self):
         self.Pr = linkService.friss(self.defaultPower, self.Gt, self.Gr, self.lamb, self.d0, self.L)
         self.setWhiteNoiseVariance()
+        # logger.info("Initialized global parameters: ", self)
 
 
     def setWhiteNoiseVariance(self):
