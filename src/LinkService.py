@@ -52,7 +52,8 @@ def getSNR(Pr, PrInterf = 0):
     :return: Returns the white noise value in dB.
     """
 
-    snrPower = Pr/(PrInterf + gp.whiteNoiseVariance)
+    # snrPower = Pr/(PrInterf + gp.whiteNoiseVariance)
+    snrPower = Pr - gp.whiteNoiseVariance
     snr = convertTodB(snrPower)
 
     return snr
@@ -83,14 +84,17 @@ def friss(d):
 def shadowing(d):
     #TODO: Get shadowing based on friss and PathLoss
 
-    pr = friss(d) * math.pow(10,) #TODO: Terminar aqui
+
+
+    pr = gp.defaultPower - getPahLoss(d)
+    # pr = friss(d) * math.pow(10,) #TODO: Terminar aqui
 
     # pr = gp.defaultPower * (gp.lamb / 4 * math.pi * gp.d0) ^ 2 * (gp.d0 / d) ^ gp.pathLossExp
 
     return pr
 
 
-def getPahLoss(Pt, Pr):
+def getPahLoss(d):
     """
     Path loss attenuation in dB for a free space link. Can be calculated as:
 
@@ -99,17 +103,19 @@ def getPahLoss(Pt, Pr):
                        Pt
     or
 
-                      Gt * Gr * lamb^2
-    PL(dB) = -10 log(------------------)
-                       (4 * pi * d)^2
+                        Gt * Gr * lamb^2
+    PL(dB) = -10 n log(------------------)
+                         (4 * pi * d)^2
 
     :param Pt: Transmitter power
     :param Pr: Receiver power
     :return: Returns the path loss attenuation in dB
     """
 
-    pl = -10 * gp.pathLossExp * math.log10(Pr / Pt)
+    Xsig = np.random.normal(loc=0, scale=gp.whiteNoiseVariance)
 
+    # pl = -10 * gp.pathLossExp * math.log10((gp.Gt * gp.Gr * gp.lamb^2)/((4 * math.pi * d)^2))
+    pl = friss(d) + 10 * gp.pathLossExp * np.log10(d/gp.d0) + Xsig
     return pl
 
 
