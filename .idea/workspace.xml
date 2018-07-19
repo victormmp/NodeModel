@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="786e5a4c-a619-4c8e-ab66-fefa55ff232e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GlobalParameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GlobalParameters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LinkService.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/LinkService.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,7 +18,7 @@
         <entry file="file://$PROJECT_DIR$/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="201">
-              <caret line="42" column="17" selection-start-line="42" selection-start-column="17" selection-end-line="42" selection-end-column="17" />
+              <caret line="42" selection-start-line="42" selection-end-line="42" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -54,8 +53,8 @@
       <file leaf-file-name="LinkService.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/LinkService.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="63" selection-start-line="63" selection-end-line="63" />
+            <state relative-caret-position="82">
+              <caret line="60" column="85" selection-start-line="60" selection-start-column="85" selection-end-line="60" selection-end-column="85" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -88,9 +87,9 @@
         <option value="$PROJECT_DIR$/src/NodeService.py" />
         <option value="$PROJECT_DIR$/tests/LinkServiceTest.py" />
         <option value="$PROJECT_DIR$/src/NetNode.py" />
-        <option value="$PROJECT_DIR$/src/LinkService.py" />
         <option value="$PROJECT_DIR$/__init__.py" />
         <option value="$PROJECT_DIR$/src/GlobalParameters.py" />
+        <option value="$PROJECT_DIR$/src/LinkService.py" />
       </list>
     </option>
   </component>
@@ -201,7 +200,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1852123" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -227,15 +225,27 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/__init__.py</url>
-          <line>42</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="7" />
+      <option name="time" value="9" />
     </breakpoint-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>(1.0 - 0.5 * (np.exp(-(SNR / 2.0) * (1.0 / (gp.R / gp.Bn)))))</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>(np.exp(-(SNR / 2.0) * (1.0 / (gp.R / gp.Bn))))</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>20.0 * np.log10(value)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/NetNode.py">
@@ -509,7 +519,7 @@
     <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
-          <caret line="42" column="17" selection-start-line="42" selection-start-column="17" selection-end-line="42" selection-end-column="17" />
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
@@ -518,8 +528,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/LinkService.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
+        <state relative-caret-position="82">
+          <caret line="60" column="85" selection-start-line="60" selection-start-column="85" selection-end-line="60" selection-end-column="85" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>

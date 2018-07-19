@@ -58,10 +58,10 @@ def getNetworkMeanPRR(linkList):
 
 
 def calculateLinkPRR(link):
-    #TODO: Verify error in this method and write docstring
+    #TODO: Verify the equation. This power calculation results in a very large number
 
     SNR = getSNR(shadowing(link.distance))
-    prr = (1 - 0.5 * (math.exp(-(SNR / 2) * (1 / (gp.R / gp.Bn))))) ^ (8 * gp.arq)
+    prr = np.power((1.0 - 0.5 * (np.exp(-(SNR / 2.0) * (1.0 / (gp.R / gp.Bn))))), (8.0 * gp.arq))
 
     return prr
 
@@ -81,8 +81,7 @@ def getSNR(Pr, PrInterf = 0):
     """
 
     # snrPower = Pr/(PrInterf + gp.whiteNoiseVariance)
-    whiteNoiseVariance = Pr / 1e4
-    snrPower = Pr - whiteNoiseVariance
+    snrPower = Pr - gp.whiteNoiseVariance
     snr = convertTodB(snrPower)
 
     return snr
@@ -140,7 +139,6 @@ def getPahLoss(d):
     :param Pr: Receiver power
     :return: Returns the path loss attenuation in dB
     """
-    print(gp.whiteNoiseVariance)
     Xsig = np.random.normal(loc=0, scale=gp.whiteNoiseVariance)
 
     # pl = -10 * gp.pathLossExp * math.log10((gp.Gt * gp.Gr * gp.lamb^2)/((4 * math.pi * d)^2))
@@ -155,7 +153,7 @@ def convertTodB(value):
     :return: The value in dB
     """
 
-    return 20 * math.log10(value)
+    return 20.0 * np.log10(value)
 
 
 # ============================| EXECUTION ROUTINE |=============================
