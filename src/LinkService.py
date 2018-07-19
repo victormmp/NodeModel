@@ -2,7 +2,7 @@ from NetNode import *
 import numpy as np
 import math
 import logging
-from GlobalParameters import GlobalParameters as gp
+import GlobalParameters as gp
 
 def getLinkList(nodeList):
     """
@@ -81,7 +81,8 @@ def getSNR(Pr, PrInterf = 0):
     """
 
     # snrPower = Pr/(PrInterf + gp.whiteNoiseVariance)
-    snrPower = Pr - gp.whiteNoiseVariance
+    whiteNoiseVariance = Pr / 1e4
+    snrPower = Pr - whiteNoiseVariance
     snr = convertTodB(snrPower)
 
     return snr

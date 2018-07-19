@@ -1,7 +1,7 @@
 import logging
 from LinkService import *
 from NetNode import *
-from GlobalParameters import  *
+import GlobalParameters as gp
 import numpy as np
 
 CONFIGURE_LOG = False
@@ -30,8 +30,7 @@ if (CONFIGURE_LOG):
 N = 5
 
 # Initialize global Parameters
-gp = GlobalParameters()
-gp.initialize()
+gp.setWhiteNoiseVariance()
 
 nodeArray = []
 
