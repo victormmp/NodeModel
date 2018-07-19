@@ -1,8 +1,8 @@
-from src.NetNode import *
+from NetNode import *
 import numpy as np
 import math
 import logging
-from src.GlobalParameters import GlobalParameters as gp
+from GlobalParameters import GlobalParameters as gp
 
 def getLinkList(nodeList):
     """
@@ -13,7 +13,10 @@ def getLinkList(nodeList):
     :return: Returns a list with all the possible links.
     """
     if type(nodeList) is not np.ndarray:
-        nodeList = np.array(nodeList)
+        if type(nodeList) is list:
+            nodeList = np.array(nodeList)
+        else:
+            raise TypeError("Argument object is not an array, and cannot be processed")
 
     numberOfNodes = nodeList.size
     linkList = []
@@ -29,8 +32,33 @@ def getLinkList(nodeList):
     return linkList
 
 
-def calculateLinkPRR(link):
+def getNetworkMeanPRR(linkList):
+    """
+    Get the mean PRR value for each link in the network.
+    :param linkList: Lisk of all considered links.
+    :return: Mean PRR value for the current network.
+    """
+    meanPRR = 0
 
+    # Assert right object type
+
+    if type(linkList) is not np.ndarray:
+        if type(linkList) is list:
+            linkList = np.array(linkList)
+        else:
+            raise TypeError("Argument object is not an array, and cannot be processed. Type: %s" %(type(linkList)))
+
+    # Calculate mean PRR
+
+    for index in range(0, linkList.size):
+        meanPRR += calculateLinkPRR(linkList[index])
+    meanPRR /= linkList.size
+
+    return meanPRR
+
+
+def calculateLinkPRR(link):
+    #TODO: Verify error in this method and write docstring
 
     SNR = getSNR(shadowing(link.distance))
     prr = (1 - 0.5 * (math.exp(-(SNR / 2) * (1 / (gp.R / gp.Bn))))) ^ (8 * gp.arq)
@@ -111,7 +139,7 @@ def getPahLoss(d):
     :param Pr: Receiver power
     :return: Returns the path loss attenuation in dB
     """
-
+    print(gp.whiteNoiseVariance)
     Xsig = np.random.normal(loc=0, scale=gp.whiteNoiseVariance)
 
     # pl = -10 * gp.pathLossExp * math.log10((gp.Gt * gp.Gr * gp.lamb^2)/((4 * math.pi * d)^2))

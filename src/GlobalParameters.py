@@ -20,7 +20,7 @@ MUST be called in every project file.
 
 
 """
-import src.LinkService as linkService
+import LinkService as linkService
 import logging
 
 # logger = logging.getLogger("src.GlobalParameters")
@@ -53,8 +53,12 @@ class GlobalParameters:
         pass
 
     def initialize(self):
+        print("Initialized global parameters")
+
         self.Pr = linkService.friss(self.defaultPower)
         self.setWhiteNoiseVariance()
+
+        print("White Noise Variance: ", self.whiteNoiseVariance)
         # logger.info("Initialized global parameters: ", self)
 
 
