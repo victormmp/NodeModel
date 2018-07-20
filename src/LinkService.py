@@ -80,9 +80,10 @@ def getSNR(Pr, PrInterf = 0):
     :return: Returns the white noise value in dB.
     """
 
-    # snrPower = Pr/(PrInterf + gp.whiteNoiseVariance)
-    snrPower = Pr - gp.whiteNoiseVariance
+    snrPower = Pr/(PrInterf + gp.whiteNoiseVariance)
+    # snrPower = Pr - gp.whiteNoiseVariance
     snr = convertTodB(snrPower)
+
 
     return snr
 
