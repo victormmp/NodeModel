@@ -61,7 +61,7 @@ def calculateLinkPRR(link):
     #TODO: Verify the equation. This power calculation results in a very large number
 
     SNR = getSNR(shadowing(link.distance))
-    prr = np.power((1.0 - 0.5 * (np.exp(-(SNR / 2.0) * (1.0 / (gp.R / gp.Bn))))), (8.0 * gp.arq))
+    prr = np.power((1.0 - 0.5 * (np.exp(-(SNR / 2.0) * (gp.Bn / gp.R)))), (8.0 * gp.arq))
 
     return prr
 
@@ -104,7 +104,7 @@ def friss(d):
     :return: Signal power at receiver
     """
 
-    pr = (gp.defaultPower * gp.Gt * gp.Gr * gp.lamb) / ((4 * math.pi * d) ** 2 * gp.L)
+    pr = (gp.defaultPower * gp.Gt * gp.Gr * np.power(gp.lamb, 2)) / (np.power((4 * math.pi * d) ,2) * gp.L)
 
     return pr
 
@@ -112,10 +112,10 @@ def friss(d):
 def shadowing(d):
     #TODO: Get shadowing based on friss and PathLoss
 
+    pr0 = friss(d)
 
-
-    pr = gp.defaultPower - getPahLoss(d)
-    # pr = friss(d) * math.pow(10,) #TODO: Terminar aqui
+    # pr = convertTodBm(gp.defaultPower) - getPahLoss(d)
+    pr = friss(d) * math.pow(10,getPahLoss(d)/10) #TODO: Terminar aqui
 
     # pr = gp.defaultPower * (gp.lamb / 4 * math.pi * gp.d0) ^ 2 * (gp.d0 / d) ^ gp.pathLossExp
 
@@ -126,23 +126,28 @@ def getPahLoss(d):
     """
     Path loss attenuation in dB for a free space link. Can be calculated as:
 
-                       Pr
-    PL(dB) = - 10 log(----)
-                       Pt
+                      Pr
+    PL(d) = - 10 log(----)
+                      Pt
     or
 
-                        Gt * Gr * lamb^2
-    PL(dB) = -10 n log(------------------)
-                         (4 * pi * d)^2
+                       Gt * Gr * lamb^2
+    PL(d) = -10 n log(------------------)
+                        (4 * pi * d)^2
+    or
+                                     d
+    PL(d) = PL(d0) + 10 * n * log10(----) + X_sigma
+                                     d0
 
     :param Pt: Transmitter power
     :param Pr: Receiver power
     :return: Returns the path loss attenuation in dB
     """
-    Xsig = np.random.normal(loc=0, scale=gp.whiteNoiseVariance)
+    Xsig = np.random.normal(loc=0, scale=gp.std_db)
 
-    # pl = -10 * gp.pathLossExp * math.log10((gp.Gt * gp.Gr * gp.lamb^2)/((4 * math.pi * d)^2))
-    pl = friss(d) + 10 * gp.pathLossExp * np.log10(d/gp.d0) + Xsig
+    pl = -10 * gp.pathLossExp * np.log10(d/gp.d0) + Xsig
+    # pl = -10 * gp.pathLossExp * np.log10((gp.Gt * gp.Gr * np.power(gp.lamb,2))/np.power((4 * math.pi * d),2))
+    # pl = friss(d) + 10 * gp.pathLossExp * np.log10(d/gp.d0) + Xsig
     return pl
 
 
@@ -154,6 +159,19 @@ def convertTodB(value):
     """
 
     return 20.0 * np.log10(value)
+
+
+def convertTodBm(value):
+
+    dBm = 20 * np.log10(value/1e3)
+
+    return dBm
+
+def getSNRBounds():
+    upperBound = 10 * np.log10(-1.28 * np.log(1 - np.power(0.9, (1 / (8 * gp.arq)))))
+    lowerBound = 10 * np.log10(-1.28 * np.log(1 - np.power(0.1, (1 / (8 * gp.arq)))))
+
+    pass #TODO: Make a return as an object like bound.upper
 
 
 # ============================| EXECUTION ROUTINE |=============================
