@@ -3,6 +3,9 @@ import numpy as np
 import math
 import logging
 import GlobalParameters as gp
+from collections import namedtuple
+
+Bounds = namedtuple("Bounds",["upper","lower"])
 
 def getLinkList(nodeList):
     """
@@ -172,8 +175,15 @@ def getSNRBounds():
     upperBound = 10 * np.log10(-1.28 * np.log(1 - np.power(0.9, (1 / (8 * gp.arq)))))
     lowerBound = 10 * np.log10(-1.28 * np.log(1 - np.power(0.1, (1 / (8 * gp.arq)))))
 
-    pass #TODO: Make a return as an object like bound.upper
+    SNRBounds = Bounds(upper=upperBound, lower=lowerBound)
 
+    return SNRBounds
+
+
+def getPRRBounds():
+    prrBounds = Bounds(upper=0.9, lower=0.1)
+
+    return prrBounds
 
 # ============================| EXECUTION ROUTINE |=============================
 
