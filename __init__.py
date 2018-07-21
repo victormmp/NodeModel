@@ -2,6 +2,7 @@ import logging
 from LinkService import *
 from NetNode import *
 import GlobalParameters as gp
+import RadioModels
 import numpy as np
 
 CONFIGURE_LOG = False
@@ -28,6 +29,9 @@ if (CONFIGURE_LOG):
 
 # Defining number of nodes as N^2
 N = 5
+
+# Retrieve parametes from a radio model
+gp.getParametersFromModel(RadioModels.MICA2)
 
 # Initialize global Parameters
 gp.setWhiteNoiseVariance()

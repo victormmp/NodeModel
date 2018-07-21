@@ -1,7 +1,7 @@
 """
-parameter class object. Specified class to store all model parametes,
+Parameter class object. Specified class to store all model parameters,
 such as transmission power and noise floor.
-MUST be called in every project file.
+MUST be imported in every project file.
 
 ================================================================================
 1. CONSIDERATIONS
@@ -21,6 +21,7 @@ MUST be called in every project file.
 
 """
 import LinkService as linkService
+import RadioModels
 from collections import namedtuple
 import logging
 
@@ -50,17 +51,30 @@ def setWhiteNoiseVariance():
     global whiteNoiseVariance
     whiteNoiseVariance = Pr/1e4
 
-def getParametersFromModel(self, model):
+def getParametersFromModel(model):
     """
     This method allows user to set parameters used for the network model calculation from a predefined model.
     :param model: A transmitter model with predefined configurations.
     :return:  This method returns void.
     """
 
-    self.R = model.R
-    self.Bn = model.Bn
-    self.Gt = model.G
-    self.Gr = model.R
-    self.defaultPower = model.transmissionPower
-    self.freq = model.freq
-    self.lamb = 3e8/self.freq
+    if model is None:
+        print("No model selected.")
+        return False
+    elif type(model) is not RadioModels.RadioModel:
+        raise TypeError("Model is not a valid RadioModel object.")
+
+    global R, Bn, Gt, Gr, defaultPower, freq, lamb, arq
+
+    R = model.R
+    Bn = model.Bn
+    Gt = model.Gt
+    Gr = model.Gr
+    defaultPower = model.Pt
+    freq = model.freq
+    lamb = 3e8/freq
+    arq = model.arq
+
+    print("Using parameters from %s radio model." %(model.name))
+
+    return True
