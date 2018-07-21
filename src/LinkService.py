@@ -63,10 +63,10 @@ def getNetworkMeanPRR(linkList):
 
 def getLinksForEachNode(nodeList):
     """
-    Get an array with link informations for each node on the network.
+    Get an array with link information for each node on the network.
 
     Each index in the array is a node. For it, each node has a list with all
-    possible links. It's basicaly a list with a link with every other node on the
+    possible links. It's basically a list with a link with every other node on the
     network.
 
     In this list, is contained information about that link, such as the position
