@@ -4,6 +4,7 @@ from NetNode import *
 import GlobalParameters as gp
 import RadioModels
 import numpy as np
+from collections import namedtuple
 
 CONFIGURE_LOG = False
 
@@ -47,3 +48,7 @@ linkList = getLinkList(nodeArray)
 meanPRR = getNetworkMeanPRR(linkList)
 print("Number of links: ", linkList.size)
 print("Mean PRR value: ", meanPRR)
+
+nodeLinks = getLinksForEachNode(nodeArray)
+
+nodesQuality = countLinksByQuality(nodeLinks)

@@ -21,7 +21,11 @@ class Node:
 
 
     def getCoordinates(self):
-        return [self.latitude, self.longitude]
+        if hasattr(self, "latitude") and hasattr(self, "longitude"):
+            return [self.latitude, self.longitude]
+        else:
+            raise ValueError("No coordinates configured for the current node.")
+
 
 
     def __sub__(self, other):

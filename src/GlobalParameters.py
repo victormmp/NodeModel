@@ -53,7 +53,8 @@ def setWhiteNoiseVariance():
 
 def getParametersFromModel(model):
     """
-    This method allows user to set parameters used for the network model calculation from a predefined model.
+    This method allows user to set parameters used for the network model
+    calculation from a predefined model.
     :param model: A transmitter model with predefined configurations.
     :return:  This method returns void.
     """
