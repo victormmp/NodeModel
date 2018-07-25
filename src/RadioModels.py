@@ -16,10 +16,6 @@ parameters in global scope with this specific parameters.
 
 """
 
-from collections import namedtuple
-
-# RadioModel = namedtuple("RadioModel", ["R", "Bn", "Gt", "Gr", "Pt", "freq", "arq"])
-
 class RadioModel:
     R = None        # Transmission ratio [bps]
     Bn = None       # Noise bandwidth [Hz]

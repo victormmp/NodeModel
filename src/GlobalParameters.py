@@ -22,8 +22,10 @@ MUST be imported in every project file.
 """
 import LinkService as linkService
 import RadioModels
+import numpy as np
 from collections import namedtuple
 import logging
+from settings import *
 
 # logger = logging.getLogger("src.GlobalParameters")
 
@@ -50,10 +52,28 @@ def setWhiteNoiseVariance():
     Pr = linkService.friss(d0)
     global whiteNoiseVariance
     whiteNoiseVariance = Pr/1e4
+    
+
+def setTransmissionPowerVariance(variance=None):
+    global defaultPower
+    global USE_TRANSMISSION_POWER_VARIANCE
+    
+    if (variance==None):
+        # Using a default variance for transmission power of 1%
+        variance = 0.01 * defaultPower
+    if(USE_TRANSMISSION_POWER_VARIANCE):
+        defaultPower = defaultPower + np.random.normal(loc=0, scale=variance)
+    
+    
+def initializeGlobalParameters():
+    setWhiteNoiseVariance()
+    setTransmissionPowerVariance()
+    
 
 def getParametersFromModel(model):
     """
-    This method allows user to set parameters used for the network model calculation from a predefined model.
+    This method allows user to set parameters used for the network model
+    calculation from a predefined model.
     :param model: A transmitter model with predefined configurations.
     :return:  This method returns void.
     """

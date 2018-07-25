@@ -38,6 +38,7 @@ def getLinkList(nodeList):
 def getNetworkMeanPRR(linkList):
     """
     Get the mean PRR value for each link in the network.
+
     :param linkList: Lisk of all considered links.
     :return: Mean PRR value for the current network.
     """
@@ -59,6 +60,141 @@ def getNetworkMeanPRR(linkList):
 
     return meanPRR
 
+
+def getLinksForEachNode(nodeList):
+    """
+    Get an array with link information for each node on the network.
+
+    Each index in the array is a node. For it, each node has a list with all
+    possible links. It's basically a list with a link with every other node on the
+    network.
+
+    In this list, is contained information about that link, such as the position
+    of the receiver node, the link PRR and the link quality, based in the specified
+    boundaries.
+
+    CurrentNode: {
+        links: [
+            link1{
+                NextNode,
+                LinkQuality,
+                LinkPRR,
+                Link
+            }
+            link2...
+        ]
+    }
+
+    :param nodeList: List of all nodes
+    :return: array where each index is another array cont
+    """
+
+    if type(nodeList) is not np.ndarray:
+        if type(nodeList) is list:
+            nodeList = np.array(nodeList)
+        else:
+            raise TypeError("Argument object is not an array, and cannot be processed. Type: %s" %(type(nodeList)))
+
+    LinkInfo = namedtuple("LinkInfo",["nextNode","linkQuality","linkPRR", "link"])
+    NodeInfo = namedtuple("NodeInfo",["currentNode","links"])
+
+    nodes = []
+
+    for node in nodeList:
+        nodeInfo = []
+        links = getPossibleLinks(node, nodeList)
+        for link in links:
+            nextNode = link.nodeB
+            linkPRR = calculateLinkPRR(link)
+            quality = getLinkQuality(linkPRR, getPRRBounds())
+            nodeInfo.append(LinkInfo(nextNode=nextNode, linkQuality=quality, linkPRR=linkPRR, link=link))
+        nodes.append(NodeInfo(currentNode=node,links=nodeInfo))
+
+    return nodes
+
+
+def getLinkQuality(indicator, bounds):
+    """
+    Map an indicator value into a quality label based on the boundaries specified.
+
+    :param indicator: The current quality indicator
+    :param bounds: The quality boundaries.
+    :return: "good", "medium" or "bad" based on the indicator value.
+    """
+
+    quality = ""
+    if indicator >= bounds.upper:
+        quality = "good"
+    elif indicator <= bounds.lower:
+        quality = "bad"
+    else:
+        quality = "medium"
+
+    return quality
+
+
+def getPossibleLinks(node, nodeList):
+    """
+    Get a list with all possible links for a specified node.
+
+    :param node: Current node to be evaluated.
+    :param nodeList: List of all nodes within the network.
+    :return: Numpy array with all links for the current node inside the network.
+    """
+
+    if type(nodeList) is not np.ndarray:
+        if type(nodeList) is list:
+            nodeList = np.array(nodeList)
+        else:
+            raise TypeError("Argument object is not an array, and cannot be processed")
+
+    numberOfNodes = nodeList.size
+    linkList = []
+
+    for indexNode in range(0, numberOfNodes):
+        if not ((node.xPos is nodeList[indexNode].xPos) and (node.yPos is nodeList[indexNode].yPos)):
+            newLink = Link(node, nodeList[indexNode])
+            linkList.append(newLink)
+
+    linkList = np.array(linkList)
+    return linkList
+
+
+def countLinksByQuality(nodesInfo):
+    """
+    Method to count number of good, medium and bad links for each node. This will
+    be useful to determine que quality of the network disposition, if we choose
+    as a restriction a minimum number of good quality links for each node.
+
+    :param nodesInfo: The array with the link information for each node. Can be
+                        obtained through "getLinksForEachNode()" method.
+    :return: An array whit each link quality counter for all nodes
+    """
+
+    QualityCounter = namedtuple("QualityCounter",["node", "good","medium","bad"])
+
+    nodesQualityCounters = []
+
+    for nodeInfo in nodesInfo:
+        goodCounter = 0
+        mediumCounter = 0
+        badCounter = 0
+
+        for linkInfo in nodeInfo.links:
+            if linkInfo.linkQuality is "good":
+                goodCounter += 1
+            elif linkInfo.linkQuality is "medium":
+                mediumCounter += 1
+            elif linkInfo.linkQuality is "bad":
+                badCounter += 1
+
+        nodeQualityCounter = QualityCounter(node = nodeInfo.currentNode,
+                                            good = goodCounter,
+                                            medium = mediumCounter,
+                                            bad = badCounter)
+        nodesQualityCounters.append(nodeQualityCounter)
+
+    return nodesQualityCounters
 
 def calculateLinkPRR(link):
     #TODO: Verify the equation. This power calculation results in a very large number
