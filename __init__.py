@@ -3,10 +3,9 @@ from LinkService import *
 from NetNode import *
 import GlobalParameters as gp
 import RadioModels
+from settings import *
 import numpy as np
 from collections import namedtuple
-
-CONFIGURE_LOG = False
 
     # CONFIGURES LOG OPTIONS
 if (CONFIGURE_LOG):
@@ -35,7 +34,7 @@ N = 5
 gp.getParametersFromModel(RadioModels.MICA2)
 
 # Initialize global Parameters
-gp.setWhiteNoiseVariance()
+gp.initializeGlobalParameters()
 
 nodeArray = []
 
@@ -52,3 +51,7 @@ print("Mean PRR value: ", meanPRR)
 nodeLinks = getLinksForEachNode(nodeArray)
 
 nodesQuality = countLinksByQuality(nodeLinks)
+
+print("\n\n>> Quality links by node counter:\n")
+for node in nodesQuality:
+    print("Node(%s, %s): Good: %s, Medium: %s, Bad: %s" %(node.node.xPos, node.node.yPos, node.good, node.medium, node.bad))
