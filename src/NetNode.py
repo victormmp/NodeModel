@@ -27,38 +27,38 @@ class Node:
             raise ValueError("No coordinates configured for the current node.")
 
 
-
     def __sub__(self, other):
         resp = Node(None, None)
         resp.xPos = self.xPos - other.xPos
         resp.yPos = self.yPos - other.yPos
 
         return resp
+    
+    
+    def __eq__(self, other):
+        
+        return self.xPos == self.yPos and self.yPos == self.xPos
 
 
 class Link:
     distance = None
-    rssi = None
-    lqi = None
-    nodeA = Node()
-    nodeB = Node()
-    prr = None
 
-    def __init__(self, nodeA, nodeB):
+
+    def __init__(self, nodeA: Node, nodeB: Node):
         self.nodeA = nodeA
         self.nodeB = nodeB
         self.distance = self.getDistance()
 
-    def getLQI(self):
-        return self.lqi
+    def setLQI(self, lqi):
+        self.lqi = lqi
 
 
-    def getRSSI(self):
-        return self.rssi
+    def setRSSI(self, rssi):
+        self.rssi = rssi
 
 
-    def getPRR(self):
-        return self.prr
+    def setPRR(self, prr):
+        self.prr = prr
 
 
     def getDistance(self):

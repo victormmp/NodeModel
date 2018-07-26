@@ -1,8 +1,7 @@
-from numpy.core.multiarray import ndarray
-
 import GlobalParameters as gp
 import LinkService as linkService
 from RadioModels import *
+from NetNode import *
 from collections import namedtuple
 import numpy as np
 
@@ -21,3 +20,9 @@ def getFitnessForNetwork(nodeList):
     
     return qualityIndicators
     
+
+def getSNRForLink(nodeA: Node, nodeB: Node):
+    link: Link = Link(nodeA, nodeB)
+    SNR = linkService.getSNR(linkService.shadowing(link.distance))
+    
+    return SNR

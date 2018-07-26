@@ -135,7 +135,7 @@ def getLinkQuality(indicator, bounds):
     return quality
 
 
-def getPossibleLinks(node, nodeList):
+def getPossibleLinks(node: Node, nodeList):
     """
     Get a list with all possible links for a specified node.
 
@@ -154,7 +154,7 @@ def getPossibleLinks(node, nodeList):
     linkList = []
 
     for indexNode in range(0, numberOfNodes):
-        if not ((node.xPos is nodeList[indexNode].xPos) and (node.yPos is nodeList[indexNode].yPos)):
+        if node is not nodeList[indexNode]:
             newLink = Link(node, nodeList[indexNode])
             linkList.append(newLink)
 
@@ -208,7 +208,7 @@ def getMeanQualityLinksForNetwork(nodesQualityCounters):
     return result
     
     
-def calculateLinkPRR(link):
+def calculateLinkPRR(link: Link):
     #TODO: Verify the equation. This power calculation results in a very large number
 
     SNR = getSNR(shadowing(link.distance))
