@@ -28,13 +28,10 @@ if (CONFIGURE_LOG):
 
 
 # Defining number of nodes as N^2
-N = 5
-
-# Retrieve parametes from a radio model
-gp.getParametersFromModel(RadioModels.MICA2)
+N = 7
 
 # Initialize global Parameters
-gp.initializeGlobalParameters()
+gp.initializeGlobalParameters(RadioModels.MICA2)
 
 nodeArray = []
 
