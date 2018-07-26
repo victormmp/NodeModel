@@ -65,7 +65,8 @@ def setTransmissionPowerVariance(variance=None):
         defaultPower = defaultPower + np.random.normal(loc=0, scale=variance)
     
     
-def initializeGlobalParameters():
+def initializeGlobalParameters(model):
+    getParametersFromModel(model)
     setWhiteNoiseVariance()
     setTransmissionPowerVariance()
     

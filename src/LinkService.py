@@ -1,3 +1,5 @@
+from typing import List, Any, Callable
+
 from NetNode import *
 import numpy as np
 import math
@@ -196,6 +198,17 @@ def countLinksByQuality(nodesInfo):
 
     return nodesQualityCounters
 
+
+def getMeanQualityLinksForNetwork(nodesQualityCounters):
+    
+    meanValidLinks = lambda nodesQualityCounters: [(node.good + node.medium) for node in nodesQualityCounters]
+    
+    result = np.mean(meanValidLinks(nodesQualityCounters))
+    
+    return result
+    
+    
+
 def calculateLinkPRR(link):
     #TODO: Verify the equation. This power calculation results in a very large number
 
@@ -207,8 +220,8 @@ def calculateLinkPRR(link):
 
 def getSNR(Pr, PrInterf = 0):
     """
-    Signal Noise Ratio basic calculation, defined as transmitted power divided by noise power (from other transmissions
-    plus white noise power).
+    Signal Noise Ratio basic calculation, defined as transmitted power divided
+    by noise power (from other transmissions plus white noise power).
 
                           Pr
     SNR (dB) = -------------------------
@@ -222,7 +235,6 @@ def getSNR(Pr, PrInterf = 0):
     snrPower = Pr/(PrInterf + gp.whiteNoiseVariance)
     # snrPower = Pr - gp.whiteNoiseVariance
     snr = convertTodB(snrPower)
-
 
     return snr
 
