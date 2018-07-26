@@ -208,7 +208,6 @@ def getMeanQualityLinksForNetwork(nodesQualityCounters):
     return result
     
     
-
 def calculateLinkPRR(link):
     #TODO: Verify the equation. This power calculation results in a very large number
 
