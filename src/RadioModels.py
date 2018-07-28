@@ -35,22 +35,35 @@ class RadioModel:
         self.arq = arq
         self.name = name
 
-WirelessHart = RadioModel(name = "WirelessHart",
-                          R = None,
-                          Bn = None,
-                          Gt = None,
-                          Gr = None,
-                          Pt = None,
-                          freq = None,
-                          arq = None
+WirelessHart = RadioModel(
+                            name = "WirelessHart",
+                            R = None,
+                            Bn = None,
+                            Gt = None,
+                            Gr = None,
+                            Pt = None,
+                            freq = None,
+                            arq = None
                           )
 
-MICA2 = RadioModel(name="MICA2",
-                   R = 19e3,
-                   Bn = 30e3,
-                   Gt = 1,
-                   Gr = 1,
-                   Pt = 0.2,
-                   freq = 2.4e9,
-                   arq = 50
+MICA2 = RadioModel(
+                    name="MICA2",
+                    R = 19e3,
+                    Bn = 30e3,
+                    Gt = 1,
+                    Gr = 1,
+                    Pt = 0.2,
+                    freq = 2.4e9,
+                    arq = 50
+                   )
+
+ZigBee = RadioModel(
+                        name = "ZigBee",
+                        R = 250e3,
+                        Bn = 300e3,
+                        Gt = 1,
+                        Gr = 1,
+                        Pt = 0.00079,   # -1 dBm, appx 0.8 mW
+                        freq = 2.4e9,
+                        arq = 60
                    )
