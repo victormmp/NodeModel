@@ -31,7 +31,7 @@ if (CONFIGURE_LOG):
 N = 7
 
 # Initialize global Parameters
-gp.initializeGlobalParameters(RadioModels.MICA2)
+gp.initializeGlobalParameters(RadioModels.ZigBee)
 
 nodeArray = []
 

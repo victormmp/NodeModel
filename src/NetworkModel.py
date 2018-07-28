@@ -6,7 +6,7 @@ from collections import namedtuple
 import numpy as np
 
 # Initialize Global Parameters
-gp.initializeGlobalParameters(MICA2)
+gp.initializeGlobalParameters(ZigBee)
 
 def getFitnessForNetwork(nodeList):
     
