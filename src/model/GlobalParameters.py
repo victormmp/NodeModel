@@ -20,8 +20,7 @@ MUST be imported in every project file.
 
 
 """
-import LinkService as linkService
-import RadioModels
+from model import LinkService as linkService, RadioModels
 import numpy as np
 from collections import namedtuple
 import logging
@@ -49,7 +48,7 @@ limiar_snr_delta = 1            # SNR lower limit in dB
 limiar_prr = 0                  # Lower PRR limit, where communication is impossible
 
 def setWhiteNoiseVariance():
-    Pr = linkService.friss(d0)
+    Pr = LinkService.friss(d0)
     global whiteNoiseVariance
     whiteNoiseVariance = Pr/1e4
     
@@ -83,7 +82,7 @@ def getParametersFromModel(model):
         print("No model selected.")
         return False
     elif type(model) is not RadioModels.RadioModel:
-        raise TypeError("Model is not a valid RadioModel object.")
+        raise TypeError("model is not a valid RadioModel object.")
 
     global R, Bn, Gt, Gr, defaultPower, freq, lamb, arq
 

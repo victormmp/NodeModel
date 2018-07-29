@@ -1,10 +1,10 @@
 from typing import List, Any, Callable
 
-from NetNode import *
+from model.NetNode import *
 import numpy as np
 import math
 import logging
-import GlobalParameters as gp
+from model import GlobalParameters as gp
 from collections import namedtuple
 
 Bounds = namedtuple("Bounds",["upper","lower"])

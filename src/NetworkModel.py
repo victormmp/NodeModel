@@ -1,7 +1,6 @@
-import GlobalParameters as gp
-import LinkService as linkService
-from RadioModels import *
-from NetNode import *
+from model import LinkService as linkService, GlobalParameters as gp
+from model.RadioModels import *
+from model.NetNode import *
 from collections import namedtuple
 import numpy as np
 
@@ -12,9 +11,9 @@ def getFitnessForNetwork(nodeList):
     
     Fitness = namedtuple("Fitness", ["meanValidLinks"])
     
-    linksForEachNode = linkService.getLinksForEachNode(nodeList)
-    qualityLinksCounter = linkService.countLinksByQuality(linksForEachNode)
-    meanQuality = linkService.getMeanQualityLinksForNetwork(qualityLinksCounter)
+    linksForEachNode = LinkService.getLinksForEachNode(nodeList)
+    qualityLinksCounter = LinkService.countLinksByQuality(linksForEachNode)
+    meanQuality = LinkService.getMeanQualityLinksForNetwork(qualityLinksCounter)
     
     qualityIndicators = Fitness(meanValidLinks=meanQuality)
     
@@ -23,6 +22,6 @@ def getFitnessForNetwork(nodeList):
 
 def getSNRForLink(nodeA: Node, nodeB: Node):
     link: Link = Link(nodeA, nodeB)
-    SNR = linkService.getSNR(linkService.shadowing(link.distance))
+    SNR = LinkService.getSNR(LinkService.shadowing(link.distance))
     
     return SNR

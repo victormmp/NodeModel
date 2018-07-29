@@ -1,9 +1,9 @@
 """
-Model file for radio solutions. Use this file to change some radio inherit
+model file for radio solutions. Use this file to change some radio inherit
 parameters in global scope with this specific parameters.
 
     -----------------------------------------------------------------------
-    | Model Parameters  |                 Description                     |
+    | model Parameters  |                 Description                     |
     |-------------------|-------------------------------------------------|
     | R                 |     Transmission ratio [bps]                    |
     | Bn                |     Noise bandwidth [Hz]                        |

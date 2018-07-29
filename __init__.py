@@ -1,8 +1,7 @@
 import logging
-from LinkService import *
-from NetNode import *
-import GlobalParameters as gp
-import RadioModels
+from model.LinkService import *
+from model.NetNode import *
+from model import GlobalParameters as gp, RadioModels
 from settings import *
 import numpy as np
 from collections import namedtuple

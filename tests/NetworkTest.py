@@ -6,7 +6,7 @@ Created by: Victor Magalhaes
 """
 
 import NetworkModel
-from NetNode import *
+from model.NetNode import *
 import numpy as np
 
 # ==========| Parameters |==========
