@@ -8,16 +8,22 @@ Created by: Victor Magalhaes
 import NetworkModel
 from model.NetNode import *
 import numpy as np
+from model.GeoService import *
 
 # ==========| Parameters |==========
 #
-N = 9
 
-nodeArray = []
+nodeArray: list = []
 
-for x in range(N):
-    for y in range(N):
-        nodeArray.append(Node(x,y))
+GEOJSON_FILE: str = 'sample_geojson/sample_miranda_1.geojson'
+
+if GEOJSON_FILE is not None:
+    nodeArray = getNodesFromGeoJSONFile(GEOJSON_FILE)
+else:
+    N = 9
+    for x in range(N):
+        for y in range(N):
+            nodeArray.append(Node(x,y))
         
 TEST_1 = 1
 TEST_2 = 2
@@ -29,6 +35,8 @@ def test1():
 
 # ==========| TEST 2 |==========
 def test2():
+    N = np.size(nodeArray)
+    print(N)
     index = np.random.randint(0, N^2, size=2)
     nodeA = nodeArray[index[0]]
     nodeB = nodeArray[index[1]]
@@ -44,7 +52,32 @@ def test3():
     
     print(nodeArray[1] is nodeArray[2])
 
+def test4():
+    nodeList:list = getNodesFromGeoJSONFile('sample_geojson/sample_miranda_1.geojson')
+    
+    for item in nodeList:
+        print (item.getCoordinates())
+
+
+def test5():
+    N = np.size(nodeArray)
+    print(N)
+    index = np.random.randint(0, N ^ 2, size=2)
+    nodeA = nodeArray[index[0]]
+    nodeB = nodeArray[index[1]]
+    
+    if nodeA is not nodeB:
+        snrTest = NetworkModel.getSNRForLink(nodeA, nodeB)
+        print("For nodes: A(%s, %s)" % (nodeA.latitude, nodeA.longitude),
+              " and B(%s, %s) " % (nodeB.latitude, nodeB.longitude), " - SNR: ",
+              snrTest)
+    else:
+        print("Same nodes: A(%s, %s)" % (nodeA.latitude, nodeA.longitude),
+          " and B(%s, %s) " % (nodeB.latitude, nodeB.longitude))
+    
+    
+
 #==========| Test Selection |==========
 
 
-test1()
+test4()

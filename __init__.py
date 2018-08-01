@@ -27,7 +27,7 @@ if (CONFIGURE_LOG):
 
 
 # Defining number of nodes as N^2
-N = 7
+N = 9
 
 # Initialize global Parameters
 gp.initializeGlobalParameters(RadioModels.ZigBee)

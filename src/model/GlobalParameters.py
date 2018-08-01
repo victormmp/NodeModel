@@ -48,7 +48,7 @@ limiar_snr_delta = 1            # SNR lower limit in dB
 limiar_prr = 0                  # Lower PRR limit, where communication is impossible
 
 def setWhiteNoiseVariance():
-    Pr = LinkService.friss(d0)
+    Pr = linkService.friss(d0)
     global whiteNoiseVariance
     whiteNoiseVariance = Pr/1e4
     

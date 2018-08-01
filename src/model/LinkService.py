@@ -7,6 +7,8 @@ import logging
 from model import GlobalParameters as gp
 from collections import namedtuple
 
+# np.seterr(all='raise')
+
 Bounds = namedtuple("Bounds",["upper","lower"])
 
 def getLinkList(nodeList):
@@ -212,7 +214,13 @@ def calculateLinkPRR(link: Link):
     #TODO: Verify the equation. This power calculation results in a very large number
 
     SNR = getSNR(shadowing(link.distance))
-    prr = np.power((1.0 - 0.5 * (np.exp(-(SNR / 2.0) * (gp.Bn / gp.R)))), (8.0 * gp.arq))
+    
+    if SNR < 0:
+        SNR = 0
+        
+    arg1 = np.float64(1.0 - 0.5 * (np.exp(-(SNR / 2.0) * (gp.Bn / gp.R))))
+    arg2 = np.float64(8.0 * gp.arq)
+    prr: np.float64 = np.power(arg1, arg2)
 
     return prr
 

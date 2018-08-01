@@ -60,10 +60,10 @@ MICA2 = RadioModel(
 ZigBee = RadioModel(
                         name = "ZigBee",
                         R = 250e3,
-                        Bn = 300e3,
-                        Gt = 1,
-                        Gr = 1,
-                        Pt = 0.00079,   # -1 dBm, appx 0.8 mW
+                        Bn = 2e6,           # According to 802.15.4 standard
+                        Gt = 5,
+                        Gr = 5,
+                        Pt = 0.00079,       # -1 dBm, appx 0.8 mW
                         freq = 2.4e9,
                         arq = 60
                    )
