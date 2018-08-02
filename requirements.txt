@@ -1,1 +1,3 @@
 numpy>=1.13.0
+geojson>=2.4.0
+vincenty>=0.1.4

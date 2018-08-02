@@ -1,146 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="786e5a4c-a619-4c8e-ab66-fefa55ff232e" name="Default" comment="">
-<<<<<<< HEAD
-      <change afterPath="$PROJECT_DIR$/src/NetworkModel.py" afterDir="false" />
+    <list default="true" id="b177a446-39c9-483f-889a-e5f99c75739a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/model/GeoService.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GlobalParameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GlobalParameters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LinkService.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/LinkService.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/LinkServiceTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/NetworkTest.py" afterDir="false" />
-=======
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
->>>>>>> master
+      <change beforePath="$PROJECT_DIR$/src/NetworkModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/NetworkModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/GlobalParameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/GlobalParameters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/LinkService.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/LinkService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/NetNode.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/NetNode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/RadioModels.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/RadioModels.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/NetworkTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/NetworkTest.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1363519291">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.34" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="dummy" value="10" />
+          <entry key="py" value="2165" />
+          <entry key="txt" value="15" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="PLAIN_TEXT" value="25" />
+          <entry key="Python" value="2165" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="5" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="NetNode.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/NetNode.py">
-          <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state relative-caret-position="-7">
-=======
-            <state relative-caret-position="120">
->>>>>>> master
-              <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-              <folding>
-                <element signature="e#21#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RadioModels.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RadioModels.py">
-          <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state>
-=======
-            <state relative-caret-position="240">
->>>>>>> master
-              <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LinkService.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/LinkService.py">
-          <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state relative-caret-position="187">
-              <caret line="205" selection-start-line="205" selection-end-line="205" />
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
-=======
-            <state relative-caret-position="2430">
-              <caret line="162" column="4" selection-start-line="162" selection-start-column="4" selection-end-line="162" selection-end-column="4" />
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
->>>>>>> master
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-<<<<<<< HEAD
-      <file leaf-file-name="NetworkModel.py" pinned="false" current-in-tab="false">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/NetworkModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="4" lean-forward="true" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+            <state relative-caret-position="248">
+              <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
               <folding>
-                <element signature="e#0#41#0" expanded="true" />
+                <element signature="e#0#68#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NetworkTest.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/NetworkTest.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/NetNode.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+            <state relative-caret-position="242">
+              <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
               <folding>
-                <element signature="e#0#19#0" expanded="true" />
+                <element signature="e#21#32#0" expanded="true" />
+                <marker date="1533098467753" expanded="true" signature="555:947" ph="..." />
+                <marker date="1533098467753" expanded="true" signature="988:997" ph="..." />
+                <marker date="1533098467753" expanded="true" signature="1262:1268" ph="..." />
+                <marker date="1533098467753" expanded="true" signature="2413:2534" ph="..." />
+                <marker date="1533098467753" expanded="true" signature="2556:2565" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GlobalParameters.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GlobalParameters.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/RadioModels.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="70" column="34" selection-start-line="70" selection-start-column="34" selection-end-line="70" selection-end-column="34" />
-=======
-      <file leaf-file-name="GlobalParameters.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GlobalParameters.py">
+            <state relative-caret-position="422">
+              <caret line="65" column="44" selection-start-line="65" selection-start-column="44" selection-end-line="65" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/GeoService.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
-              <caret line="55" selection-start-line="55" selection-end-line="55" />
->>>>>>> master
+            <state relative-caret-position="272">
+              <caret line="28" column="84" selection-start-line="28" selection-start-column="84" selection-end-line="28" selection-end-column="84" />
               <folding>
-                <element signature="e#844#877#0" expanded="true" />
+                <element signature="e#0#27#0" expanded="true" />
+                <marker date="1533098545952" expanded="true" signature="111:112" ph="..." />
+                <marker date="1533098545952" expanded="true" signature="572:936" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state>
-=======
-            <state relative-caret-position="15">
->>>>>>> master
-              <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-<<<<<<< HEAD
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-=======
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="36" column="31" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
->>>>>>> master
+            <state relative-caret-position="140">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -148,11 +118,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/LinkService.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="2" selection-start-column="2" selection-end-column="2" />
+            <state relative-caret-position="288">
+              <caret line="160" selection-start-line="160" selection-end-line="160" />
+              <folding>
+                <element signature="e#0#38#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/NetworkTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="58" selection-start-line="58" selection-end-line="58" />
+              <folding>
+                <element signature="e#135#154#0" expanded="true" />
+                <marker date="1533098586861" expanded="true" signature="1225:1979" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -168,10 +154,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>global</find>
-      <find>whiteNoi</find>
-      <find>white</find>
-      <find>friss</find>
+      <find>lambda</find>
+      <find>getDistance</find>
+      <find>raise</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -180,35 +165,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/NodeService.py" />
-        <option value="$PROJECT_DIR$/src/NetNode.py" />
-        <option value="$PROJECT_DIR$/src/RadioModels.py" />
-<<<<<<< HEAD
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/settings.py" />
+        <option value="$PROJECT_DIR$/src/model/RadioModels.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/src/GlobalParameters.py" />
-        <option value="$PROJECT_DIR$/tests/LinkServiceTest.py" />
-        <option value="$PROJECT_DIR$/src/LinkService.py" />
         <option value="$PROJECT_DIR$/src/NetworkModel.py" />
+        <option value="$PROJECT_DIR$/src/model/NetNode.py" />
+        <option value="$PROJECT_DIR$/src/model/GeoService.py" />
         <option value="$PROJECT_DIR$/tests/NetworkTest.py" />
-        <option value="$PROJECT_DIR$/__init__.py" />
-=======
-        <option value="$PROJECT_DIR$/src/LinkService.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/settings.py" />
-        <option value="$PROJECT_DIR$/src/GlobalParameters.py" />
-        <option value="$PROJECT_DIR$/__init__.py" />
-        <option value="$PROJECT_DIR$/requirements.txt" />
->>>>>>> master
       </list>
     </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="10" />
-    <option name="y" value="20" />
-    <option name="width" value="1346" />
-    <option name="height" value="698" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -228,6 +192,23 @@
               <item name="NodeModel" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="NodeModel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NodeModel" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NodeModel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NodeModel" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NodeModel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NodeModel" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="sample_geojson" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -235,20 +216,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/NetworkTest.py" />
-=======
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/__init__.py" />
->>>>>>> master
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Python" />
-  </component>
-  <component name="PyConsoleOptionsProvider">
-    <option name="myPythonConsoleState">
-      <console-settings module-name="modelagem-teste" is-module-sdk="true">
-        <option name="myUseModuleSdk" value="true" />
-        <option name="myModuleName" value="modelagem-teste" />
-      </console-settings>
-    </option>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -262,8 +230,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Execute init">
-    <configuration name="Execute init" type="PythonConfigurationType" factoryName="Python">
+  <component name="RunManager">
+    <configuration name="teste NodeNetwork" type="PythonConfigurationType" factoryName="Python">
       <module name="modelagem-teste" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -271,25 +239,7 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Program Files\Python36-32\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/__init__.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="true" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="Test NetworkModel" type="PythonConfigurationType" factoryName="Python">
-      <module name="modelagem-teste" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Program Files\Python36-32\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -298,40 +248,21 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="true" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <module name="modelagem-teste" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Program Files\Python36-32\python.exe" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <list>
-      <item itemvalue="Python.Execute init" />
-      <item itemvalue="Python.Test NetworkModel" />
-    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="786e5a4c-a619-4c8e-ab66-fefa55ff232e" name="Default" comment="" />
-      <created>1529166299021</created>
+      <changelist id="b177a446-39c9-483f-889a-e5f99c75739a" name="Default Changelist" comment="" />
+      <created>1533090338349</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1529166299021</updated>
+      <updated>1533090338349</updated>
     </task>
     <servers />
   </component>
@@ -339,467 +270,111 @@
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-<<<<<<< HEAD
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49417248" visible="true" weight="0.1852123" />
-=======
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1852123" />
->>>>>>> master
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.3286385" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3286385" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Python Console" order="7" />
-<<<<<<< HEAD
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3286385" />
-      <window_info id="Structure" order="1" sideWeight="0.5058275" side_tool="true" visible="true" weight="0.1852123" />
-=======
+      <window_info id="Favorites" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
->>>>>>> master
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39906102" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Python Console" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" weight="0.32903227" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32903227" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32903227" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.txt" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints-dialog>
-        <breakpoints-dialog />
-      </breakpoints-dialog>
-<<<<<<< HEAD
-      <option name="time" value="31" />
-=======
-      <option name="time" value="27" />
->>>>>>> master
-    </breakpoint-manager>
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="(1.0 - 0.5 * (np.exp(-(SNR / 2.0) * (gp.Bn / gp.R))))" language="Python" />
-        <watch expression="-(SNR / 2.0) * (gp.Bn / gp.R)" language="Python" />
-      </configuration>
-    </watches-manager>
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="evaluateExpression">
-      <expression>
-        <expression-string>type(model)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>model.__instance__</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>model.__instance__.__name__</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>model.__class__.__name__</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>model.__class__</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>model.__name__</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>model.</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>model.size</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>model.R</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
-  </component>
   <component name="editorHistoryManager">
-<<<<<<< HEAD
-=======
-    <entry file="file://$PROJECT_DIR$/src/NetNode.py">
+    <entry file="file://$PROJECT_DIR$/src/model/RadioModels.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
->>>>>>> master
-    <entry file="file://$PROJECT_DIR$/src/NodeService.py" />
-    <entry file="file://$PROJECT_DIR$/src/NetLayout.py" />
-    <entry file="file://$PROJECT_DIR$/src/NodeService.py" />
-    <entry file="file://$PROJECT_DIR$/tests/NetworkTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/LinkService.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NetNode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="912">
-          <caret line="57" column="2" selection-start-line="57" selection-start-column="2" selection-end-line="57" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GlobalParameters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="49" column="99" selection-start-line="49" selection-start-column="99" selection-end-line="49" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/LinkService.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NetNode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GlobalParameters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/LinkService.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1014">
-          <caret line="78" column="8" selection-start-line="78" selection-start-column="8" selection-end-line="78" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NetNode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="741">
-          <caret line="57" column="2" selection-start-line="57" selection-start-column="2" selection-end-line="57" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GlobalParameters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="637">
-          <caret line="49" column="99" selection-start-line="49" selection-start-column="99" selection-end-line="49" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NodeService.py" />
-    <entry file="file://$PROJECT_DIR$/src/LinkService.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="28" column="21" lean-forward="true" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/NetworkTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NetNode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="741">
-          <caret line="57" column="2" selection-start-line="57" selection-start-column="2" selection-end-line="57" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GlobalParameters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="36" column="20" lean-forward="true" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NodeService.py" />
-    <entry file="file://$PROJECT_DIR$/tests/NetworkTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NetNode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="741">
-          <caret line="57" column="2" lean-forward="true" selection-start-line="57" selection-start-column="2" selection-end-line="57" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GlobalParameters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="8" column="23" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/LinkService.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NodeService.py" />
-    <entry file="file://$PROJECT_DIR$/src/NetNode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="806">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GlobalParameters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/LinkService.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NodeService.py" />
-    <entry file="file://$PROJECT_DIR$/src/NetNode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="656">
-          <caret line="41" column="14" lean-forward="true" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NodeService.py" />
-    <entry file="file://$PROJECT_DIR$/src/NetNode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NodeService.py" />
-    <entry file="file://$PROJECT_DIR$/src/NetNode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="11" lean-forward="true" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NodeService.py" />
-    <entry file="file://$PROJECT_DIR$/src/NetNode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NodeService.py" />
-    <entry file="file://$PROJECT_DIR$/src/NetLayout.py" />
-    <entry file="file://$PROJECT_DIR$/src/NodeService.py" />
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydevd_bundle/pydevd_breakpoints.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="100" selection-start-line="100" selection-end-line="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2790">
-          <caret line="186" column="52" selection-start-line="186" selection-start-column="52" selection-end-line="186" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NetNode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-          <folding>
-            <element signature="e#21#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RadioModels.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
+        <state relative-caret-position="422">
+          <caret line="65" column="44" selection-start-line="65" selection-start-column="44" selection-end-line="65" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
+        <state relative-caret-position="30">
+          <caret line="2" column="15" lean-forward="true" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GlobalParameters.py">
+    <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="70" column="34" selection-start-line="70" selection-start-column="34" selection-end-line="70" selection-end-column="34" />
-=======
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2790">
-          <caret line="186" column="52" selection-start-line="186" selection-start-column="52" selection-end-line="186" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GlobalParameters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
->>>>>>> master
+        <state relative-caret-position="140">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
           <folding>
-            <element signature="e#844#877#0" expanded="true" />
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://C:/Program Files/Python36-32/Lib/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="308" selection-start-line="308" selection-end-line="308" />
-=======
-    <entry file="file://$PROJECT_DIR$/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
->>>>>>> master
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/NetworkModel.py">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="210">
-          <caret line="14" column="4" lean-forward="true" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-=======
-        <state relative-caret-position="279">
-          <caret line="36" column="31" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
->>>>>>> master
+        <state relative-caret-position="248">
+          <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#68#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/src/LinkService.py">
+    <entry file="file://$PROJECT_DIR$/src/model/LinkService.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="205" selection-start-line="205" selection-end-line="205" />
+        <state relative-caret-position="288">
+          <caret line="160" selection-start-line="160" selection-end-line="160" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
-=======
-    <entry file="file://$PROJECT_DIR$/src/NetNode.py">
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/NetNode.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+        <state relative-caret-position="242">
+          <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
           <folding>
             <element signature="e#21#32#0" expanded="true" />
->>>>>>> master
+            <marker date="1533098467753" expanded="true" signature="555:947" ph="..." />
+            <marker date="1533098467753" expanded="true" signature="988:997" ph="..." />
+            <marker date="1533098467753" expanded="true" signature="1262:1268" ph="..." />
+            <marker date="1533098467753" expanded="true" signature="2413:2534" ph="..." />
+            <marker date="1533098467753" expanded="true" signature="2556:2565" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/model/GeoService.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="28" column="84" selection-start-line="28" selection-start-column="84" selection-end-line="28" selection-end-column="84" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+            <marker date="1533098545952" expanded="true" signature="111:112" ph="..." />
+            <marker date="1533098545952" expanded="true" signature="572:936" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/NetworkTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+        <state relative-caret-position="108">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#135#154#0" expanded="true" />
+            <marker date="1533098586861" expanded="true" signature="1225:1979" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-=======
-    <entry file="file://$PROJECT_DIR$/src/RadioModels.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/LinkService.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2430">
-          <caret line="162" column="4" selection-start-line="162" selection-start-column="4" selection-end-line="162" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
->>>>>>> master
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="2" selection-start-column="2" selection-end-column="2" />
         </state>
       </provider>
     </entry>
