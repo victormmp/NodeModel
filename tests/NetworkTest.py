@@ -6,8 +6,6 @@ Created by: Victor Magalhaes
 """
 
 import NetworkModel
-from model.NetNode import *
-import numpy as np
 from model.GeoService import *
 
 # ==========| Parameters |==========
@@ -15,12 +13,13 @@ from model.GeoService import *
 
 nodeArray: list = []
 
-GEOJSON_FILE: str = 'sample_geojson/sample_miranda_1.geojson'
+GEOJSON_FILE: str = 'sample_geojson/sample_miranda_2.geojson'
+# GEOJSON_FILE: str = None
 
 if GEOJSON_FILE is not None:
     nodeArray = getNodesFromGeoJSONFile(GEOJSON_FILE)
 else:
-    N = 9
+    N = 15
     for x in range(N):
         for y in range(N):
             nodeArray.append(Node(x,y))
@@ -37,9 +36,13 @@ def test1():
 def test2():
     N = np.size(nodeArray)
     print(N)
-    index = np.random.randint(0, N^2, size=2)
+    index = np.random.randint(0, N, size=2)
+    print("index: ", index)
     nodeA = nodeArray[index[0]]
     nodeB = nodeArray[index[1]]
+    
+    # nodeA = nodeArray[0]
+    # nodeB = nodeArray[1]
     
     snrTest = NetworkModel.getSNRForLink(nodeA, nodeB)
     
@@ -62,7 +65,8 @@ def test4():
 def test5():
     N = np.size(nodeArray)
     print(N)
-    index = np.random.randint(0, N ^ 2, size=2)
+    index = np.random.randint(0, N, size=2)
+    print("index: ", index)
     nodeA = nodeArray[index[0]]
     nodeB = nodeArray[index[1]]
     
@@ -80,4 +84,4 @@ def test5():
 #==========| Test Selection |==========
 
 
-test4()
+test2()

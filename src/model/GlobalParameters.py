@@ -20,11 +20,9 @@ MUST be imported in every project file.
 
 
 """
-from model import LinkService as linkService, RadioModels
 import numpy as np
-from collections import namedtuple
-import logging
 from settings import *
+from model import LinkService as linkService, RadioModels
 
 # logger = logging.getLogger("src.GlobalParameters")
 
@@ -47,6 +45,7 @@ limiar_snr = 30                 # SNR upper limit in dB
 limiar_snr_delta = 1            # SNR lower limit in dB
 limiar_prr = 0                  # Lower PRR limit, where communication is impossible
 
+
 def setWhiteNoiseVariance():
     Pr = linkService.friss(d0)
     global whiteNoiseVariance
@@ -60,7 +59,7 @@ def setTransmissionPowerVariance(variance=None):
     if (variance==None):
         # Using a default variance for transmission power of 1%
         variance = 0.01 * defaultPower
-    if(USE_TRANSMISSION_POWER_VARIANCE):
+    if USE_TRANSMISSION_POWER_VARIANCE:
         defaultPower = defaultPower + np.random.normal(loc=0, scale=variance)
     
     

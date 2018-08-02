@@ -1,8 +1,17 @@
-# Node class object.
+"""
+This method contains all network root objects.
+
+CLASS:
+
+1 - NODE:       Node object model. It's equivalent to a radio installed.
+
+2 - LINK:       Link object. It contains all information about a link between two nodes,
+                such as transmission quality parameters, distance, etc.
+
+"""
 import math
 from vincenty import vincenty
 import numpy as np
-# logging.basicConfig(filename="src/logs.log")
 
 class Node:
 
@@ -10,11 +19,9 @@ class Node:
         self.xPos = xPos
         self.yPos = yPos
 
-
     def setLatLon(self, latitude, longitude):
         self.latitude = latitude
         self.longitude = longitude
-        
         
     def setCoordinates(self, coordinates: list):
         self.longitude = coordinates[0]
@@ -91,7 +98,10 @@ class Link:
     
     def getDistanceFromCoordinates(self):
         value = vincenty(self.nodeA.getCoordinates(), self.nodeB.getCoordinates())
-        return value * 1000
+        if value is not None:
+            return value * 1000
+        else:
+            raise ValueError("Failed get distance from coordinates.")
     
     def getDistance(self):
         try:

@@ -1,11 +1,17 @@
+""""
+This module contains methods to be called by external processes, to access the network model
+project. Through this, the optimization algorithm can access all network inner services.
+"""
+
+
 from model import LinkService as linkService, GlobalParameters as gp
 from model.RadioModels import *
 from model.NetNode import *
 from collections import namedtuple
-import numpy as np
 
 # Initialize Global Parameters
 gp.initializeGlobalParameters(ZigBee)
+
 
 def getFitnessForNetwork(nodeList):
     

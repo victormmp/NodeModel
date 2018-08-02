@@ -1,13 +1,9 @@
 from typing import List, Any, Callable
-
 from model.NetNode import *
 import numpy as np
 import math
-import logging
 from model import GlobalParameters as gp
 from collections import namedtuple
-
-# np.seterr(all='raise')
 
 Bounds = namedtuple("Bounds",["upper","lower"])
 

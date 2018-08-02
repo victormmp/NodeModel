@@ -10,6 +10,8 @@ def getCoordinatesForNodes(nodeList):
         else:
             raise TypeError("Argument object is not an array, and cannot be processed")
     
+    # TODO: Finish this method
+    
 
 def getNodesFromGeoJSONFile(file: str):
     """
@@ -25,8 +27,7 @@ def getNodesFromGeoJSONFile(file: str):
     
     for feature in data.features:
         newNode = Node()
-        # newNode.setCoordinates(feature.geometry.coordinates)
-        newNode.extractNode(feature.geometry.coordinates,origin.geometry.coordinates)
+        newNode.extractNode(feature.geometry.coordinates, origin.geometry.coordinates)
         nodeList.append(newNode)
     
     return nodeList
