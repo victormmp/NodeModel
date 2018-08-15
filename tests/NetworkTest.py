@@ -10,6 +10,7 @@ sys.path.insert(0, r'../')
 
 import src.NetworkModel as NetworkModel
 from src.model.GeoService import *
+import click
 
 # ==========| Parameters |==========
 #
@@ -53,7 +54,6 @@ def test2():
           " and B(%s, %s) " %(nodeB.xPos, nodeB.yPos), " - SNR: ", snrTest)
     
 # ==========| TEST 3 |==========
-
 def test3():
     
     print(nodeArray[1] is nodeArray[2])
@@ -63,7 +63,6 @@ def test4():
     
     for item in nodeList:
         print (item.getCoordinates())
-
 
 def test5():
     N = np.size(nodeArray)
@@ -81,11 +80,24 @@ def test5():
     else:
         print("Same nodes: A(%s, %s)" % (nodeA.latitude, nodeA.longitude),
           " and B(%s, %s) " % (nodeB.latitude, nodeB.longitude))
+
+@click.command()
+@click.option('--test', '-t', type=click.STRING, required=True, multiple=False, help='Select the test you want to run.')
+def init(test):
+    click.echo('Selected Test: %s' %test, color='green')
+
+    return {
+        '1': test1,
+        '2': test2,
+        '3': test3,
+        '4': test4,
+        '5': test5
+    }[test]()
+
     
     
 
 #==========| Test Selection |=========
 
-
-
-test5()
+if __name__=='__main__':
+    init()

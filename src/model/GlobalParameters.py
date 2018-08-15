@@ -47,7 +47,8 @@ limiar_prr = 0                  # Lower PRR limit, where communication is imposs
 
 
 def setWhiteNoiseVariance():
-    Pr = linkService.friss(d0)
+   # Pr = linkService.friss(d0)
+    Pr = linkService.shadowing(d0)
     global whiteNoiseVariance
     whiteNoiseVariance = Pr/1e4
     
