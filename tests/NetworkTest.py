@@ -4,9 +4,12 @@ from a optimization algorithm.
 
 Created by: Victor Magalhaes
 """
+import sys
 
-import NetworkModel
-from model.GeoService import *
+sys.path.insert(0, r'../')
+
+import src.NetworkModel as NetworkModel
+from src.model.GeoService import *
 
 # ==========| Parameters |==========
 #
@@ -81,7 +84,8 @@ def test5():
     
     
 
-#==========| Test Selection |==========
+#==========| Test Selection |=========
 
 
-test2()
+
+test5()

@@ -1,7 +1,7 @@
-from model.LinkService import *
-from model.NetNode import *
-from model import GlobalParameters as gp, RadioModels
-from model.GeoService import *
+from src.model.LinkService import *
+from src.model.NetNode import *
+from src.model import GlobalParameters as gp, RadioModels
+from src.model.GeoService import *
 
 # Defining number of nodes as N^2
 N = 9

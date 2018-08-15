@@ -1,8 +1,8 @@
 from typing import List, Any, Callable
-from model.NetNode import *
+from src.model.NetNode import *
 import numpy as np
 import math
-from model import GlobalParameters as gp
+import src.model.GlobalParameters as gp
 from collections import namedtuple
 
 Bounds = namedtuple("Bounds",["upper","lower"])
@@ -207,7 +207,17 @@ def getMeanQualityLinksForNetwork(nodesQualityCounters):
     
     
 def calculateLinkPRR(link: Link):
-    #TODO: Verify the equation. This power calculation results in a very large number
+    """
+    This method calculates the Package Reception Ration for a specified link, according to the
+    following formula:
+
+                    1          SNR       B        8f
+    PRR(d) = ( 1 - --- (exp(- ----- * ( --- ))) ) 
+                    2           2        R
+    
+    :param:link: A default link object
+
+    """
 
     SNR = getSNR(shadowing(link.distance))
     
@@ -270,7 +280,7 @@ def shadowing(d):
     pr0 = friss(d)
 
     # pr = convertTodBm(gp.defaultPower) - getPahLoss(d)
-    pr = friss(d) * math.pow(10,getPahLoss(d)/10) #TODO: Terminar aqui
+    pr = friss(gp.d0) * math.pow(10,getPahLoss(d)/10) #TODO: Terminar aqui
 
     # pr = gp.defaultPower * (gp.lamb / 4 * math.pi * gp.d0) ^ 2 * (gp.d0 / d) ^ gp.pathLossExp
 

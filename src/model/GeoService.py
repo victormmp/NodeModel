@@ -1,4 +1,4 @@
-from model.NetNode import *
+from src.model.NetNode import *
 import geojson as gj
 import numpy as np
 

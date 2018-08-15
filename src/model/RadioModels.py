@@ -59,7 +59,7 @@ MICA2 = RadioModel(
 
 ZigBee = RadioModel(
                         name = "ZigBee",
-                        R = 250e3,
+                        R = 250e3,          # Zigbee comunication rate
                         Bn = 2e6,           # According to 802.15.4 standard
                         Gt = 5,
                         Gr = 5,

@@ -4,13 +4,13 @@ project. Through this, the optimization algorithm can access all network inner s
 """
 
 
-from model import LinkService as linkService, GlobalParameters as gp
-from model.RadioModels import *
-from model.NetNode import *
+from src.model import LinkService as linkService, GlobalParameters as gp
+from src.model.RadioModels import *
+from src.model.NetNode import *
 from collections import namedtuple
 
 # Initialize Global Parameters
-gp.initializeGlobalParameters(ZigBee)
+gp.initializeGlobalParameters(None)
 
 
 def getFitnessForNetwork(nodeList):
