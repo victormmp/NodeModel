@@ -61,9 +61,9 @@ ZigBee = RadioModel(
                         name = "ZigBee",
                         R = 250e3,          # Zigbee comunication rate
                         Bn = 2e6,           # According to 802.15.4 standard
-                        Gt = 5,
-                        Gr = 5,
+                        Gt = 1.7,
+                        Gr = 1.7,
                         Pt = 0.00079,       # -1 dBm, appx 0.8 mW
-                        freq = 2.4e9,
+                        freq = 2.48e9,
                         arq = 60
                    )

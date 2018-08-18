@@ -27,9 +27,6 @@ else:
     for x in range(N):
         for y in range(N):
             nodeArray.append(Node(x,y))
-        
-TEST_1 = 1
-TEST_2 = 2
 
 # ==========| TEST 1 |==========
 def test1():
@@ -84,18 +81,23 @@ def test5():
 @click.command()
 @click.option('--test', '-t', type=click.STRING, required=True, multiple=False, help='Select the test you want to run.')
 def init(test):
-    click.echo('Selected Test: %s' %test, color='green')
 
-    return {
-        '1': test1,
-        '2': test2,
-        '3': test3,
-        '4': test4,
-        '5': test5
-    }[test]()
+    if test is None:
+        click.secho('ERROR: no test informed.', fg='red', bold=True)
+        
+    click.clear()
+    click.secho('Selected Test: %s' %test, fg='green', bold=True)
 
-    
-    
+    try:
+        return {
+            '1': test1,
+            '2': test2,
+            '3': test3,
+            '4': test4,
+            '5': test5
+        }[test]()
+    except KeyError:
+        click.secho('ERROR: No test %s defined.' % test, fg='red', bold=True)
 
 #==========| Test Selection |=========
 
