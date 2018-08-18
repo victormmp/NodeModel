@@ -17,7 +17,7 @@ import click
 
 nodeArray: list = []
 
-GEOJSON_FILE: str = 'sample_geojson/sample_miranda_2.geojson'
+GEOJSON_FILE: str = './tests/sample_geojson/sample_miranda_2.geojson'
 # GEOJSON_FILE: str = None
 
 if GEOJSON_FILE is not None:
@@ -78,9 +78,10 @@ def test5():
         print("Same nodes: A(%s, %s)" % (nodeA.latitude, nodeA.longitude),
           " and B(%s, %s) " % (nodeB.latitude, nodeB.longitude))
 
-@click.command()
+@click.command('test')
 @click.option('--test', '-t', type=click.STRING, required=True, multiple=False, help='Select the test you want to run.')
-def init(test):
+@click.pass_context
+def init(context, test):
 
     if test is None:
         click.secho('ERROR: no test informed.', fg='red', bold=True)
