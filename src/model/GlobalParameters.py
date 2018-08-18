@@ -39,7 +39,7 @@ L = 1                           # System loss factor not related to the propagat
 arq = 60                        # File size in bytes
 pathLossExp = 2                 # For initial tests, see table in docstring (1.1)
 std_db = 0.1                    # Deviation used to calculate path loss
-d0 = 1                          # Reference distance for Friss formula
+d0 = 10                          # Reference distance for Friss formula
 defaultRate = 5e6               # Default transmission rate
 limiar_snr = 30                 # SNR upper limit in dB
 limiar_snr_delta = 1            # SNR lower limit in dB
@@ -47,7 +47,8 @@ limiar_prr = 0                  # Lower PRR limit, where communication is imposs
 
 
 def setWhiteNoiseVariance():
-    Pr = linkService.friss(d0)
+   # Pr = linkService.friss(d0)
+    Pr = linkService.shadowing(d0)
     global whiteNoiseVariance
     whiteNoiseVariance = Pr/1e4
     
