@@ -6,20 +6,22 @@ Created by: Victor Magalhaes
 """
 import sys
 
-sys.path.insert(0, r'../')
+import click
 
+import src.model.GlobalParameters as gp
+import src.model.LinkService as linkService
 import src.NetworkModel as NetworkModel
 from src.model.GeoService import *
-import src.model.LinkService as linkService
-import src.model.GlobalParameters as gp
 from src.model.RadioModels import *
-import click
+
+sys.path.insert(0, r'../')
+
 
 
 nodeArray: list = []
 
+# ==============| TESTS |===============
 
-# ==========| TEST 1 |==========
 def test1():
     """
     Test fitness calculation from a node list. The method being tested is supposed to be the
@@ -27,7 +29,8 @@ def test1():
     """
     fitness = NetworkModel.getFitnessForNetwork(nodeArray)
     click.echo("Fitness: %s " % fitness.__str__())
-# ==========| TEST 2 |==========
+
+    
 def test2():
     """
     Test SRN for a random link of network list. The nodes are described as grid coordinates.
@@ -38,22 +41,19 @@ def test2():
     print("index: ", index)
     nodeA = nodeArray[index[0]]
     nodeB = nodeArray[index[1]]
-    
-    # nodeA = nodeArray[0]
-    # nodeB = nodeArray[1]
-    
     snrTest = NetworkModel.getSNRForLink(nodeA, nodeB)
     
     print("For nodes: A(%s, %s)" %(nodeA.xPos, nodeA.yPos),
           " and B(%s, %s) " %(nodeB.xPos, nodeB.yPos), " - SNR: ", snrTest)
     
-# ==========| TEST 3 |==========
+
 def test3():
     """
     Test if equality compare of two nodes are working correctly
     """
     
     print(nodeArray[1] is nodeArray[2])
+
 
 def test4():
     """
@@ -63,6 +63,7 @@ def test4():
     
     for item in nodeList:
         print (item.getCoordinates())
+
 
 def test5():
     """
@@ -84,6 +85,7 @@ def test5():
     else:
         print("Same nodes: A(%s, %s)" % (nodeA.latitude, nodeA.longitude),
           " and B(%s, %s) " % (nodeB.latitude, nodeB.longitude))
+
 
 def test6():
     """
@@ -110,6 +112,8 @@ def test6():
     for node in nodesQuality:
         print("Node(%s, %s): Good: %s, Medium: %s, Bad: %s" %(node.node.xPos, node.node.yPos, node.good, node.medium, node.bad))
 
+
+#==================================| COMMAND LINE ACCESS |===============================
 
 @click.command('test-model')
 @click.option('--test', '-t', type=click.STRING, required=True, multiple=False, help='Select the test you want to run.')
