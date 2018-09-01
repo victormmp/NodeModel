@@ -47,6 +47,12 @@ class Node:
             return (self.latitude, self.longitude)
         else:
             raise ValueError("No coordinates configured for the current node.")
+
+    def getPoints(self):
+        if hasattr(self, "xPos") and hasattr(self, "yPos"):
+            return (self.xPos, self.yPos)
+        else:
+            raise ValueError("No points configurated for current node.")
     
 
     def __sub__(self, other):

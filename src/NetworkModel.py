@@ -5,6 +5,7 @@ project. Through this, the optimization algorithm can access all network inner s
 
 
 from src.model import LinkService as linkService, GlobalParameters as gp
+from src.constants import *
 from src.model.RadioModels import *
 from src.model.NetNode import *
 from collections import namedtuple
@@ -45,3 +46,15 @@ def getSNRForLink(nodeA: Node, nodeB: Node):
     SNR = linkService.getSNR(linkService.shadowing(link.distance))
     
     return SNR
+
+def getFitnessForVariables(n1: int, n2: int, n3: int, n4: int):
+    """
+    Get fitness for a set of variables
+    """
+    N1 = []
+    N2 = []
+    N3 = []
+    N4 = []
+    # Generate vector N1
+    for i in range(n1):
+        node = Node()
