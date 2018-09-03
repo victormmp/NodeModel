@@ -4,7 +4,7 @@ from typing import Any, Callable, List
 
 import numpy as np
 
-import src.model.GlobalParameters as gp
+from src.model import GlobalParameters as gp
 from src.model.NetNode import *
 
 Bounds = namedtuple("Bounds",["upper","lower"])

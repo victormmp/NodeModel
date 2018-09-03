@@ -22,7 +22,8 @@ MUST be imported in every project file.
 """
 import numpy as np
 from settings import *
-from src.model import LinkService as linkService, RadioModels
+from src.model import LinkService as linkService
+from src.model import RadioModels
 
 # logger = logging.getLogger("src.GlobalParameters")
 
