@@ -15,6 +15,7 @@ This file sums all working options for the entire application.
 import click
 
 from tests import NetworkTest as tests
+from tests import PreProcessTest as preProcTest
 
 
 @click.group()
@@ -24,6 +25,8 @@ def cli(context):
 
 # ADD COMMANDS
 cli.add_command(tests.init)
+cli.add_command(preProcTest.testLine)
+cli.add_command(preProcTest.testArea)
 
 if __name__=='__main__':
     cli()
