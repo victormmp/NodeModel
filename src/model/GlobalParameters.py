@@ -21,11 +21,14 @@ MUST be imported in every project file.
 
 """
 import numpy as np
+import sys
+from collections import namedtuple
 from settings import *
 from src.model import LinkService as linkService
-from src.model import RadioModels
+from src.model import RadioModels, GeoService
+from src.model.NetNode import *
 
-# logger = logging.getLogger("src.GlobalParameters")
+sys.path.insert(0, r'../../')
 
 
 R = 0.25                        # Data rate in bits
@@ -40,12 +43,20 @@ L = 1                           # System loss factor not related to the propagat
 arq = 60                        # File size in bytes
 pathLossExp = 2                 # For initial tests, see table in docstring (1.1)
 std_db = 0.1                    # Deviation used to calculate path loss
-d0 = 10                          # Reference distance for Friss formula
+d0 = 10                         # Reference distance for Friss formula
 defaultRate = 5e6               # Default transmission rate
 limiar_snr = 30                 # SNR upper limit in dB
 limiar_snr_delta = 1            # SNR lower limit in dB
 limiar_prr = 0                  # Lower PRR limit, where communication is impossible
 
+dim = namedtuple("dim",["start", "end"])
+area = namedtuple("area", ["top_left", "botom_right"])
+
+N1_DIM = dim(start=(0.0, 0.0), end=(0.0, 10.0))
+N2_DIM = dim(start=(0.0, 0.0), end=(10.0, 10.0))
+N3_DIM = dim(start=(0.0, 0.0), end=(0.0, 10.0))
+N4_DIM = area(top_left=(0.0, 0.0), botom_right=(10.0, 10.0))
+SINK_NODE = Node(0.0, 0.0)
 
 def setWhiteNoiseVariance():
    # Pr = linkService.friss(d0)
@@ -69,6 +80,7 @@ def initializeGlobalParameters(model):
     getParametersFromModel(model)
     setWhiteNoiseVariance()
     setTransmissionPowerVariance()
+    if LOAD_CONSTANTS_FROM_FILE: loadConstantsFromFile(CONSTANTS_FILE)
     
 
 def getParametersFromModel(model):
@@ -99,3 +111,27 @@ def getParametersFromModel(model):
     print("Using parameters from %s radio model." %(model.name))
 
     return True
+
+
+def loadConstantsFromFile(file_path: str):
+    """
+    The corresponding file contains the locations of sink node (point (0,0)), the
+    coordinates for N1, N2, N3 lines (start and end) and the coordinates for N4 area.
+    From the file, all the Points obtained MUST follow the order:
+
+    sink - N1 start - N1 end - N2 start - N2 end - N3 start - N3 end - N4 top left - N4 botom right
+
+    """
+    
+    global SINK_NODE, N1_DIM, N2_DIM, N3_DIM, N4_DIM
+
+    nodeList = GeoService.getNodesFromGeoJSONFile(file_path)
+
+    SINK_NODE = nodeList.pop(0)
+
+    nodeCoordinate = [node.getPoints() for node in nodeList]
+
+    N1_DIM = dim(start=nodeCoordinate[0], end=nodeCoordinate[1])
+    N2_DIM = dim(start=nodeCoordinate[2], end=nodeCoordinate[3])
+    N3_DIM = dim(start=nodeCoordinate[4], end=nodeCoordinate[5])
+    N4_DIM = area(top_left=nodeCoordinate[6], botom_right=nodeCoordinate[7])

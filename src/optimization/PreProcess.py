@@ -1,7 +1,6 @@
 
 
 from src.model import LinkService as linkService, GlobalParameters as gp
-from src.constants import *
 from src.model.RadioModels import *
 from src.model.NetNode import *
 from collections import namedtuple

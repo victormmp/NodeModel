@@ -13,7 +13,7 @@ def getCoordinatesForNodes(nodeList):
     # TODO: Finish this method
     
 
-def getNodesFromGeoJSONFile(file: str):
+def getNodesFromGeoJSONFile(file: str, origin_index = 0):
     """
     Get a list of Node objects with geographic coordinates from a geoJSON file.
     :param file: GeoJSON file path.
@@ -23,7 +23,7 @@ def getNodesFromGeoJSONFile(file: str):
     with open(file) as f:
         data = gj.load(f)
     
-    origin = data.features[0]
+    origin = data.features[origin_index]
     
     for feature in data.features:
         newNode = Node()

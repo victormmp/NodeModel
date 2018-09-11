@@ -6,5 +6,7 @@ __version__ = '3.0.0'
 CONFIGURE_LOG = False
 USE_TRANSMISSION_POWER_VARIANCE = True
 
+LOAD_CONSTANTS_FROM_FILE = True
+CONSTANTS_FILE = "./resources/fixed_coordinates.geojson"
 
 

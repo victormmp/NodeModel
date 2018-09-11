@@ -48,6 +48,7 @@ def getSNRForLink(nodeA: Node, nodeB: Node):
     
     return SNR
 
+
 def getFitnessForVariables(n1: int, n2: int, n3: int, n4: int):
     """
     Get fitness for a set of variables.

@@ -33,9 +33,15 @@ class Node:
         thisPoint: tuple = self.getCoordinates()
         distanceX = vincenty(originPoint, (originPoint[0], thisPoint[1])) * 1000
         distanceY = vincenty(originPoint, (thisPoint[0], originPoint[1])) * 1000
+
+        posX = distanceX
+        posY = distanceY
+
+        if (thisPoint[1] < originPoint[1]): posX = -distanceX
+        if (thisPoint[0] < originPoint[0]): posY = -distanceY
         
-        self.xPos = distanceX
-        self.yPos = distanceY
+        self.xPos = posX
+        self.yPos = posY
         
     
     def setTransmissionParameters(self, pot):
