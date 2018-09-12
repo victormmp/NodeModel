@@ -220,6 +220,7 @@ def calculateLinkPRR(link: Link):
     :param:link: A default link object
 
     """
+    if link.distance == 0: print(link)
 
     SNR = getSNR(shadowing(link.distance))
     

@@ -112,6 +112,10 @@ def test6():
     for node in nodesQuality:
         print("Node(%s, %s): Good: %s, Medium: %s, Bad: %s" %(node.node.xPos, node.node.yPos, node.good, node.medium, node.bad))
 
+def test7():
+    fitness = NetworkModel.getFitnessForVariables(6, 4, 3, 2)
+    click.echo("Fitness: %s " % fitness.__str__())
+
 
 #==================================| COMMAND LINE ACCESS |===============================
 
@@ -147,7 +151,8 @@ def init(context, test):
             '3': test3,
             '4': test4,
             '5': test5,
-            '6': test6
+            '6': test6,
+            '7':test7
         }[test]()
     except KeyError:
         click.secho('ERROR: No test %s defined.' % test, fg='red', bold=True)
@@ -155,4 +160,4 @@ def init(context, test):
 #==========| Test Selection |=========
 
 if __name__=='__main__':
-    init()
+    test7()

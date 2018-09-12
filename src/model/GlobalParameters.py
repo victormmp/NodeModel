@@ -80,7 +80,7 @@ def initializeGlobalParameters(model):
     getParametersFromModel(model)
     setWhiteNoiseVariance()
     setTransmissionPowerVariance()
-    if LOAD_CONSTANTS_FROM_FILE: loadConstantsFromFile(CONSTANTS_FILE)
+    if LOAD_CONSTANTS_FROM_FILE: loadConstantsFromFile()
     
 
 def getParametersFromModel(model):
@@ -113,7 +113,7 @@ def getParametersFromModel(model):
     return True
 
 
-def loadConstantsFromFile(file_path: str):
+def loadConstantsFromFile(file_path=CONSTANTS_FILE):
     """
     The corresponding file contains the locations of sink node (point (0,0)), the
     coordinates for N1, N2, N3 lines (start and end) and the coordinates for N4 area.
