@@ -55,8 +55,8 @@ def getFitnessForVariables(n1: int, n2: int, n3: int, n4: int):
     Get fitness for a set of variables.
     """
 
-    click.secho("\nGenerating fitness for variables", fg='yellow')
-    click.secho("For N1: %s nodes\nFor N2: %s nodes\nFor N3: %s nodes\nFor N4: %s x %s node grid\n" %(n1, n2, n3, n4, n4), fg='yellow')
+    # click.secho("\nGenerating fitness for variables", fg='yellow')
+    # click.secho("For N1: %s nodes\nFor N2: %s nodes\nFor N3: %s nodes\nFor N4: %s x %s node grid\n" %(n1, n2, n3, n4, n4), fg='yellow')
 
     gp.loadConstantsFromFile(CONSTANTS_FILE)
     n1_nodes = PreProcess.generateNodeListForLine(n1, gp.N1_DIM)
