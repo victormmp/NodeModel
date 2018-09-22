@@ -56,8 +56,6 @@ def optimize():
         # Calculate fitness for each individual and sort them
         ranked_pop = OptimizatorService.adaptability(population)
 
-        print(ranked_pop)
-
         # Update the optimal value and count improvements
         if optimal is None: 
             optimal = ranked_pop[0].get('fitness')
@@ -66,6 +64,9 @@ def optimize():
             same_solution_count = 0
         else:
             same_solution_count += 1
+        
+        logger.info(''.join(['Optimal:{solution: ', str(ranked_pop[0].get('individual')), ', fitness: ', str(optimal), 
+                        ', mean_links: ', str(ranked_pop[0].get('links')), '}']))
     
     logger.info('Finished execution. Total time: %s.' % stopwatch.read())
         
