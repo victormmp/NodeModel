@@ -17,7 +17,7 @@ def configure_log(level=logging.DEBUG, name=None, use_file=False, use_console=Fa
     if use_console:
         console_handler = logging.StreamHandler()
         console_handler.setLevel(logging.INFO)
-        console_format = logging.Formatter('[%(asctime)s - %(module)s]: %(message)s')
+        console_format = logging.Formatter('[%(asctime)s - %(name)s: %(funcName)s] >> %(message)s')
         console_handler.setFormatter(console_format)
         logger.addHandler(console_handler)
 

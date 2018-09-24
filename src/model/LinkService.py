@@ -201,11 +201,12 @@ def countLinksByQuality(nodesInfo):
 
 def getMeanQualityLinksForNetwork(nodesQualityCounters):
     
-    meanValidLinks = lambda nodesQualityCounters: [(node.good + node.medium) for node in nodesQualityCounters]
+    return np.mean([(node.good + node.medium) for node in nodesQualityCounters])
     
-    result = np.mean(meanValidLinks(nodesQualityCounters))
-    
-    return result
+
+def getMinQualityLinksForNetwork(nodesQualityCounters):
+
+    return np.min([(node.good + node.medium) for node in nodesQualityCounters])
     
     
 def calculateLinkPRR(link: Link):

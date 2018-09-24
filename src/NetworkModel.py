@@ -24,13 +24,14 @@ def getFitnessForNetwork(nodeList):
     # Initialize Global Parameters
     gp.initializeGlobalParameters(ZigBee)
     
-    Fitness = namedtuple("Fitness", ["meanValidLinks"])
+    Fitness = namedtuple("Fitness", ["meanValidLinks", "minValidLinks"])
     
     linksForEachNode = linkService.getLinksForEachNode(nodeList)
     qualityLinksCounter = linkService.countLinksByQuality(linksForEachNode)
     meanQuality = linkService.getMeanQualityLinksForNetwork(qualityLinksCounter)
+    minQuality = linkService.getMinQualityLinksForNetwork(qualityLinksCounter)
     
-    qualityIndicators = Fitness(meanValidLinks=meanQuality)
+    qualityIndicators = Fitness(meanValidLinks=meanQuality, minValidLinks=minQuality)
     
     return qualityIndicators
     
