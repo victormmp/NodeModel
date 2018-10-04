@@ -18,10 +18,10 @@ class Constants:
     MAX_GENERATIONS = 1000
 
     # Mutation probability
-    MUTATION_PROB = 0.9
+    MUTATION_PROB = 0.2
 
     # Crossover probability
-    CROSSOVER_PROBABILITY = 0.4
+    CROSSOVER_PROBABILITY = 0.7
 
     # Max number of generations without improve of optimal value
     MAX_STAGNATED_OPTIMAL = 10
@@ -45,16 +45,28 @@ def optimize():
 
     # Generate initial population
     population = OptimizatorService.populate(initial=True)
+
+    # Calculate fitness for each individual and sort them
+    ranked_pop = OptimizatorService.adaptability(population)
     
     generation = 0
     same_solution_count = 0
     optimal = {"genome": None, "fitness": None, "links": None}
 
-    logger.info('>> Starting first optimization loop.')
+    logger.info('Starting first optimization loop.')
     # Main loop
     while(generation < metrics.MAX_GENERATIONS and same_solution_count != metrics.MAX_STAGNATED_OPTIMAL):
         generation += 1
-    
+        
+        # Perform the crossover 
+        ranked_pop = OptimizatorService.crossover(ranked_pop, metrics.CROSSOVER_PROBABILITY)
+
+        # Mutate population
+        ranked_pop = OptimizatorService.mutate(ranked_pop, metrics.MUTATION_PROB)
+
+        # Next generation
+        population = [individual.get('genome') for individual in ranked_pop]
+
         # Calculate fitness for each individual and sort them
         ranked_pop = OptimizatorService.adaptability(population)
 
@@ -67,17 +79,15 @@ def optimize():
         else:
             same_solution_count += 1
 
-        # Mutate population
-        ranked_pop = OptimizatorService.mutate(ranked_pop, metrics.MUTATION_PROB)
-
-        # Next generation
-        population = [individual.get('genome') for individual in ranked_pop]
+        # Perform environment pressure
+        ranked_pop = OptimizatorService.environment_pressure(ranked_pop)
         
         logger.info(''.join(['[{}] '.format(generation), 'Optimal:{solution: ', str(optimal.get('genome')), ', fitness: ', str(optimal.get('fitness')), 
                         ', min_links: ', str(optimal.get('links')), '}']))
     
-    logger.info('>> Finished fist optimization with %s generations. Total time: %s.' % (generation, stopwatch.read()))
-    logger.info('OPTIMAL FOR FIRST OPTIMIZATION: N1: {}, N2: {}, N3: {}, N4: {} ')
+    logger.info('Finished fist optimization with %s generations. Total time: %s.' % (generation, stopwatch.read()))
+    logger.info('OPTIMAL FOR FIRST OPTIMIZATION: N1: {}, N2: {}, N3: {}, N4: {} '.format(optimal['genome'][0], 
+                 optimal['genome'][1], optimal['genome'][2], optimal['genome'][3])
         
 
         

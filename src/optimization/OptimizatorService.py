@@ -1,6 +1,7 @@
 
 import numpy as np
 import random
+import copy
 from src.utils import LoggerUtils
 import src.NetworkModel as NetworkModel
 
@@ -90,12 +91,37 @@ def adaptability(population: list):
     return ranked_pop
 
 
-def procriate(population: list, prob_crossover):
+def crossover(population: list, prob_crossover, number_childs = None):
     """
     Generate new individuals and perform crossover.
     """
 
+    total_individuals = len(population)
 
+    if number_childs is None:
+        number_childs = total_individuals // 3
+
+    genome = Individual()
+
+    new_population = copy.deepcopy(population)
+
+    for _ in range(number_childs):
+        parents = [population[index] for index in random.sample(range(total_individuals), 2)]
+
+        # Initialize the child as a perfect copy of one of the parents
+        child = copy.deepcopy(parents[0])
+
+        # Perform the cross-over grabbing half of the genome of each parent
+        if random.uniform(0.0, 1.0) < prob_crossover:
+            half_genomes = len(parents[0]['genome']) // 2
+            new_genome = parents[0]['genome'][0:half_genomes] + parents[1]['genome'][half_genomes:]
+            child['genome'] = new_genome
+
+        new_population.append(child)
+    
+    return new_population
+
+            
 def mutate(population: list, prob_mutation):
     """
     Mutate individuals of the population based on mutation probability.
@@ -108,3 +134,12 @@ def mutate(population: list, prob_mutation):
             individual['genome'][cromossome - 1] = genome.random_cromossome(cromossome)
     
     return population
+
+
+def environment_pressure(population, desired_size = 30):
+    """
+    Perform environment pressure to get only the best adapted individuals.
+    """
+
+    new_population = copy.deepcopy(population[0:desired_size])
+    return new_population
