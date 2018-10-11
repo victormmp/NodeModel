@@ -1,11 +1,13 @@
 """
-MAIN SCRIPT FLE FOR OPTIMIZATOR
+MAIN SCRIPT FILE FOR OPTIMIZATOR
 """
 
 import click
 import src.NetworkModel as NetworkModel
 import src.model.GlobalParameters as GlobalParameters
+import src.optimization.PreProcess as PreProcess
 import numpy as np
+import scipy.optimize as spOpt
 import random
 import copy
 import logging
@@ -25,9 +27,6 @@ class Constants:
 
     # Max number of generations without improve of optimal value
     MAX_STAGNATED_OPTIMAL = 10
-
-
-
 
 
 @click.command('optimize')
@@ -54,7 +53,8 @@ def optimize():
     optimal = {"genome": None, "fitness": None, "links": None}
 
     logger.info('Starting first optimization loop.')
-    # Main loop
+
+    # Main loop for the first optimization
     while(generation < metrics.MAX_GENERATIONS and same_solution_count != metrics.MAX_STAGNATED_OPTIMAL):
         generation += 1
         
@@ -82,14 +82,26 @@ def optimize():
         # Perform environment pressure
         ranked_pop = OptimizatorService.environment_pressure(ranked_pop)
         
-        logger.info(''.join(['[{}] '.format(generation), 'Optimal:{solution: ', str(optimal.get('genome')), ', fitness: ', str(optimal.get('fitness')), 
+        logger.info(''.join(['[Gen {}] '.format(generation), 'Optimal:{solution: ', str(optimal.get('genome')), ', fitness: ', str(optimal.get('fitness')), 
                         ', min_links: ', str(optimal.get('links')), '}']))
     
-    logger.info('Finished fist optimization with %s generations. Total time: %s.' % (generation, stopwatch.read()))
+    logger.info('Finished fiRst optimization with %s generations. Total time: %s.' % (generation, stopwatch.read()))
     logger.info('OPTIMAL FOR FIRST OPTIMIZATION: N1: {}, N2: {}, N3: {}, N4: {} '.format(optimal['genome'][0], 
-                 optimal['genome'][1], optimal['genome'][2], optimal['genome'][3])
+                 optimal['genome'][1], optimal['genome'][2], optimal['genome'][3]))
         
+    # SECOND OPTIMIZATION ROUTINE:
+    # Voronoi : generate optimized points distribution in an area.
+    # L-BFGS-B : 
+    # POSSIBILITY: Model the second optimization problem as max f(x) = min SUM distances(i,j) 
 
+    # GETTING READY FOR SECOND OPTIMIZATION
+
+    n1, n2, n3, n4 = optimal['genome']
+    network = PreProcess.generateNetworkForConstants(n1, n2, n3, n4)
+
+    # n4 boundaries = spOpt.Bounds()
+
+    print(GlobalParameters.N4_DIM)
         
 
 

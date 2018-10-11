@@ -28,10 +28,12 @@ def getFitnessForNetwork(nodeList):
     
     linksForEachNode = linkService.getLinksForEachNode(nodeList)
     qualityLinksCounter = linkService.countLinksByQuality(linksForEachNode)
+    
+    minPrr = linkService.getMinPRRForNetwork(linksForEachNode)
     meanQuality = linkService.getMeanQualityLinksForNetwork(qualityLinksCounter)
     minQuality = linkService.getMinQualityLinksForNetwork(qualityLinksCounter)
     
-    qualityIndicators = Fitness(meanValidLinks=meanQuality, minValidLinks=minQuality)
+    qualityIndicators = Fitness(meanValidLinks=meanQuality, minValidLinks=minQuality, minPRR = minPrr)
     
     return qualityIndicators
     
@@ -54,6 +56,11 @@ def getSNRForLink(nodeA: Node, nodeB: Node):
 def getFitnessForVariables(n1: int, n2: int, n3: int, n4: int):
     """
     Get fitness for a set of variables.
+    
+    This method receives a set of parameters indicating the number of nodes at each
+    possible diistribution previouly defined as alghorithm constants.
+
+    The returned object is a fitness indicator.
     """
 
     # click.secho("\nGenerating fitness for variables", fg='yellow')
@@ -68,4 +75,5 @@ def getFitnessForVariables(n1: int, n2: int, n3: int, n4: int):
     nodes = np.concatenate((n1_nodes, n2_nodes, n3_nodes, n4_nodes))
 
     fitness = getFitnessForNetwork(nodes)
+    
     return fitness

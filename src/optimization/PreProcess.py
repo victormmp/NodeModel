@@ -3,6 +3,7 @@
 from src.model import LinkService as linkService, GlobalParameters as gp
 from src.model.RadioModels import *
 from src.model.NetNode import *
+from settings import *
 from collections import namedtuple
 import numpy as np
 import math
@@ -84,3 +85,25 @@ def generateNodeListForArea(n: int, dimension):
         columns += column.tolist()
 
     return np.array(columns)
+
+
+def generateNetworkForConstants(n1, n2, n3, n4):
+    """
+    Generate an identified set with each node distribution
+    of the network.
+
+    The input parameters are the number of nodes that compose each 
+    distribution configuration.
+
+    As an output, the method delivers the current network, splited in
+    distribution areas in a dictionary object.
+    """
+    
+    network = dict()
+    gp.loadConstantsFromFile(CONSTANTS_FILE)
+    network['N1'] = generateNodeListForLine(n1, gp.N1_DIM)
+    network['N2'] = generateNodeListForLine(n2, gp.N2_DIM)
+    network['N3'] = generateNodeListForLine(n3, gp.N3_DIM)
+    network['N4'] = generateNodeListForArea(n4, gp.N4_DIM)
+
+    return network
