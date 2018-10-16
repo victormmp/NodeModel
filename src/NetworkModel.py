@@ -30,10 +30,11 @@ def getFitnessForNetwork(nodeList):
     qualityLinksCounter = linkService.countLinksByQuality(linksForEachNode)
     
     minPrr = linkService.getMinPRRForNetwork(linksForEachNode)
+    avgPrr = linkService.getWeightedAveragePRRForNetwork(linksForEachNode)
     meanQuality = linkService.getMeanQualityLinksForNetwork(qualityLinksCounter)
     minQuality = linkService.getMinQualityLinksForNetwork(qualityLinksCounter)
     
-    qualityIndicators = Fitness(meanValidLinks=meanQuality, minValidLinks=minQuality, minPRR = minPrr)
+    qualityIndicators = Fitness(meanValidLinks=meanQuality, minValidLinks=minQuality, minPRR = minPrr, avgPRR = avgPrr)
     
     return qualityIndicators
     

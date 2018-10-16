@@ -201,7 +201,18 @@ def countLinksByQuality(nodesInfo):
 
 def getMinPRRForNetwork(nodesInfo):
 
-    min = ([np.min(linkInfo.linkPRR for linkInfo in nodeInfo.links) for nodeInfo in nodesInfo])
+    minimum = np.mean([np.min([linkInfo.linkPRR for linkInfo in nodeInfo.links]) for nodeInfo in nodesInfo])
+
+    return minimum
+    
+
+def getWeightedAveragePRRForNetwork(nodesInfo):
+
+    mean = np.average([np.average([linkInfo.linkPRR for linkInfo in nodeInfo.links], 
+                              weights=[linkInfo.link.getDistance() for linkInfo in nodeInfo.links])
+                               for nodeInfo in nodesInfo])
+
+    return mean
         
 
 def getMeanQualityLinksForNetwork(nodesQualityCounters):
