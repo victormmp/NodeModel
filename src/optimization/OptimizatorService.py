@@ -12,7 +12,7 @@ class Individual:
     Service class, created to work as static parameter.
     """
     n1 = [7, 8, 9, 10]
-    n2 = [3, 4, 5, 6, 7, 8, 9, 10, 11]
+    n2 = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     n3 = [2, 3, 4, 5, 6, 7]
     n4 = [5]
 

@@ -6,6 +6,7 @@ import click
 import src.NetworkModel as NetworkModel
 import src.model.GlobalParameters as GlobalParameters
 import src.optimization.PreProcess as PreProcess
+import src.model.LinkService as LinkService
 import numpy as np
 import scipy.optimize as spOpt
 import random
@@ -20,7 +21,7 @@ class Constants:
     MAX_GENERATIONS = 1000
 
     # Mutation probability
-    MUTATION_PROB = 0.2
+    MUTATION_PROB = 0.5
 
     # Crossover probability
     CROSSOVER_PROBABILITY = 0.7
@@ -85,7 +86,7 @@ def optimize():
         logger.info(''.join(['[Gen {}] '.format(generation), 'Optimal:{solution: ', str(optimal.get('genome')), ', fitness: ', str(optimal.get('fitness')), 
                         ', min_links: ', str(optimal.get('links')), '}']))
     
-    logger.info('Finished fiRst optimization with %s generations. Total time: %s.' % (generation, stopwatch.read()))
+    logger.info('Finished first optimization with %s generations. Total time: %s.' % (generation, stopwatch.read()))
     logger.info('OPTIMAL FOR FIRST OPTIMIZATION: N1: {}, N2: {}, N3: {}, N4: {} '.format(optimal['genome'][0], 
                  optimal['genome'][1], optimal['genome'][2], optimal['genome'][3]))
         
@@ -97,12 +98,38 @@ def optimize():
     # GETTING READY FOR SECOND OPTIMIZATION
 
     n1, n2, n3, n4 = optimal['genome']
+    # network = PreProcess.generateNetworkForConstants(n1, n2, n3, n4)
+    fitness = NetworkModel.getFitnessForVariables(n1, n2, n3, n4)
+
+    area_nodes = n4
+    generation = 0
+
+    logger.info('Starting second optimization.')
+    logger.info('Initial genome [N1 = {}, N2 = {}, N3 = {}, N4 = {}].'. format(n1, n2, n3, n4))
+    stopwatch_loop_2 = StopWatch()
+
+    while (generation < metrics.MAX_GENERATIONS 
+            and fitness.minValidLinks >= 2 
+            and fitness.avgPRR > LinkService.getPRRBounds().lower
+            and area_nodes > 0):
+
+        generation += 1
+        area_nodes -= 1
+        fitness = NetworkModel.getFitnessForVariables(n1, n2, n3, area_nodes)
+
+        logger.info('[Gen {}] Fitness for N4 = {}: {}'.format(generation, area_nodes, fitness))
+
+    # When the loop ends, area_nodes have a number with invalid fitness for n4.
+    # So the correct min number is the result area_nodes + 1.
+    n4 = area_nodes + 1
+    fitness = NetworkModel.getFitnessForVariables(n1, n2, n3, n4)
+    
+    logger.info('Finished second optimization with %s generations. Total time: %s.' % (generation, stopwatch_loop_2.read()))
+    logger.info('OPTIMAL FOR SECOND OPTIMIZATION: N1: {}, N2: {}, N3: {}, N4: {} '.format(n1, n2, n3, n4))
+    logger.info('FITNESS FOR SECOND OPTIMIZATION: {}'.format(fitness))
+
     network = PreProcess.generateNetworkForConstants(n1, n2, n3, n4)
 
-    # n4 boundaries = spOpt.Bounds()
-
-    print(GlobalParameters.N4_DIM)
-        
 
 
 

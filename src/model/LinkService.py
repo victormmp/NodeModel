@@ -288,7 +288,6 @@ def friss(d):
     :param L: System loss factor not related to propagation
     :return: Signal power at receiver
     """
-
     pr = (gp.defaultPower * gp.Gt * gp.Gr * np.power(gp.lamb, 2)) / (np.power((4 * math.pi * d) ,2) * gp.L)
 
     return pr

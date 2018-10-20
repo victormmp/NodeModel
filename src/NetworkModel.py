@@ -24,7 +24,7 @@ def getFitnessForNetwork(nodeList):
     # Initialize Global Parameters
     gp.initializeGlobalParameters(ZigBee)
     
-    Fitness = namedtuple("Fitness", ["meanValidLinks", "minValidLinks"])
+    Fitness = namedtuple("Fitness", ["meanValidLinks", "minValidLinks", "minPRR", "avgPRR"])
     
     linksForEachNode = linkService.getLinksForEachNode(nodeList)
     qualityLinksCounter = linkService.countLinksByQuality(linksForEachNode)
@@ -67,13 +67,14 @@ def getFitnessForVariables(n1: int, n2: int, n3: int, n4: int):
     # click.secho("\nGenerating fitness for variables", fg='yellow')
     # click.secho("For N1: %s nodes\nFor N2: %s nodes\nFor N3: %s nodes\nFor N4: %s x %s node grid\n" %(n1, n2, n3, n4, n4), fg='yellow')
 
-    gp.loadConstantsFromFile(CONSTANTS_FILE)
+    sink = gp.loadConstantsFromFile(CONSTANTS_FILE)
     n1_nodes = PreProcess.generateNodeListForLine(n1, gp.N1_DIM)
     n2_nodes = PreProcess.generateNodeListForLine(n2, gp.N2_DIM)
     n3_nodes = PreProcess.generateNodeListForLine(n3, gp.N3_DIM)
     n4_nodes = PreProcess.generateNodeListForArea(n4, gp.N4_DIM)
 
     nodes = np.concatenate((n1_nodes, n2_nodes, n3_nodes, n4_nodes))
+    nodes = np.append(nodes, sink)
 
     fitness = getFitnessForNetwork(nodes)
     
