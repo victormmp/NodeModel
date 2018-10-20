@@ -12,11 +12,13 @@ import scipy.optimize as spOpt
 import random
 import copy
 import logging
+import math
 from src.utils import LoggerUtils
 from src.utils.StopWatch import StopWatch
-import src.optimization.OptimizatorService as OptimizatorService
+import src.optimization.Evolutionary as Evolution
 
-class Constants:
+class GeneticAlgorithmConstants:
+
     # Max number of generations
     MAX_GENERATIONS = 1000
 
@@ -30,6 +32,34 @@ class Constants:
     MAX_STAGNATED_OPTIMAL = 10
 
 
+class SelectiveAneelingConstants:
+
+    # Max number of cycles
+    MAX_CYCLES = 50
+
+    # Max number of trials per cycle
+    MAX_TRIALS = 50
+
+    # Number of accepted solutions
+    ACCEPTED_SOLUTIONS = 0
+
+    # Probability of accepting worse solution at the start
+    START_PROB = 0.7
+
+    # Probability of accepting worse solution at the end
+    END_PROB = 0.001
+
+    # Initial temperature
+    START_TEMPERATURE = -1.0 / math.log(START_PROB)
+
+    # Final temperature
+    END_TEMPERATURE = -1.0 / math.log(END_PROB)
+
+    # Fractional reduction every cycle
+    FRACTIONAL_REDUCTION = np.power((END_TEMPERATURE / START_TEMPERATURE), 1.0 / (MAX_CYCLES - 1.0))
+
+
+
 @click.command('optimize')
 def optimize():
     """
@@ -41,35 +71,37 @@ def optimize():
 
     click.clear()
 
-    metrics = Constants();
+    metrics = GeneticAlgorithmConstants();
 
     # Generate initial population
-    population = OptimizatorService.populate(initial=True)
+    population = Evolution.populate(initial=True)
 
     # Calculate fitness for each individual and sort them
-    ranked_pop = OptimizatorService.adaptability(population)
+    ranked_pop = Evolution.adaptability(population)
     
     generation = 0
     same_solution_count = 0
     optimal = {"genome": None, "fitness": None, "links": None}
 
     logger.info('Starting first optimization loop.')
+    # The first optimization loop defines the number of nodes for each of the line instalation areas, 
+    # while keeping squared areas number of nodes constant
 
     # Main loop for the first optimization
     while(generation < metrics.MAX_GENERATIONS and same_solution_count != metrics.MAX_STAGNATED_OPTIMAL):
         generation += 1
         
         # Perform the crossover 
-        ranked_pop = OptimizatorService.crossover(ranked_pop, metrics.CROSSOVER_PROBABILITY)
+        ranked_pop = Evolution.crossover(ranked_pop, metrics.CROSSOVER_PROBABILITY)
 
         # Mutate population
-        ranked_pop = OptimizatorService.mutate(ranked_pop, metrics.MUTATION_PROB)
+        ranked_pop = Evolution.mutate(ranked_pop, metrics.MUTATION_PROB)
 
         # Next generation
         population = [individual.get('genome') for individual in ranked_pop]
 
         # Calculate fitness for each individual and sort them
-        ranked_pop = OptimizatorService.adaptability(population)
+        ranked_pop = Evolution.adaptability(population)
 
         # Update the optimal value and count improvements
         if optimal.get('fitness') is None:
@@ -81,7 +113,7 @@ def optimize():
             same_solution_count += 1
 
         # Perform environment pressure
-        ranked_pop = OptimizatorService.environment_pressure(ranked_pop)
+        ranked_pop = Evolution.environment_pressure(ranked_pop)
         
         logger.info(''.join(['[Gen {}] '.format(generation), 'Optimal:{solution: ', str(optimal.get('genome')), ', fitness: ', str(optimal.get('fitness')), 
                         ', min_links: ', str(optimal.get('links')), '}']))
@@ -105,16 +137,22 @@ def optimize():
     generation = 0
 
     logger.info('Starting second optimization.')
+    # The second optimization cares to find the min number of nodes within squared areas. At this part of the code
+    # it's assumed that the min number of nodes for the line areas are known due the first optimization loop.
+
     logger.info('Initial genome [N1 = {}, N2 = {}, N3 = {}, N4 = {}].'. format(n1, n2, n3, n4))
     stopwatch_loop_2 = StopWatch()
 
-    while (generation < metrics.MAX_GENERATIONS 
-            and fitness.minValidLinks >= 2 
-            and fitness.avgPRR > LinkService.getPRRBounds().lower
-            and area_nodes > 0):
-
+    # Main loop for the second optimization
+    while generation < metrics.MAX_GENERATIONS and fitness.minValidLinks >= 2 and fitness.avgPRR > LinkService.getPRRBounds().lower:
+        # First find the min number n of nodes of node at each side of the nxn grid
+        
         generation += 1
         area_nodes -= 1
+
+        if area_nodes == 0:
+            break
+
         fitness = NetworkModel.getFitnessForVariables(n1, n2, n3, area_nodes)
 
         logger.info('[Gen {}] Fitness for N4 = {}: {}'.format(generation, area_nodes, fitness))
@@ -123,12 +161,18 @@ def optimize():
     # So the correct min number is the result area_nodes + 1.
     n4 = area_nodes + 1
     fitness = NetworkModel.getFitnessForVariables(n1, n2, n3, n4)
-    
+
     logger.info('Finished second optimization with %s generations. Total time: %s.' % (generation, stopwatch_loop_2.read()))
     logger.info('OPTIMAL FOR SECOND OPTIMIZATION: N1: {}, N2: {}, N3: {}, N4: {} '.format(n1, n2, n3, n4))
     logger.info('FITNESS FOR SECOND OPTIMIZATION: {}'.format(fitness))
 
     network = PreProcess.generateNetworkForConstants(n1, n2, n3, n4)
+
+    metrics = SelectiveAneelingConstants()
+
+    logger.info('Starting third optimization. Selective aneeling')
+
+
 
 
 
