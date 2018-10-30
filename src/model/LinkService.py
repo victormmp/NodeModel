@@ -33,7 +33,6 @@ def getLinkList(nodeList):
 
     linkList = np.array(linkList)
 
-    print("Total number of links: ", linkList.size)
     return linkList
 
 
@@ -209,10 +208,25 @@ def getMinPRRForNetwork(nodesInfo):
 def getWeightedAveragePRRForNetwork(nodesInfo):
 
     mean = np.average([np.average([linkInfo.linkPRR for linkInfo in nodeInfo.links], 
-                              weights=[linkInfo.link.getDistance() for linkInfo in nodeInfo.links])
+                              weights=[1 / linkInfo.link.getDistance() for linkInfo in nodeInfo.links])
                                for nodeInfo in nodesInfo])
 
     return mean
+
+
+def getMinPRRForShortLinks(nodesInfo):
+
+    higherPRRs = [np.max([linkInfo.linkPRR for linkInfo in nodeInfo.links]) for nodeInfo in nodesInfo]
+    minPrr = np.min(higherPRRs)
+
+    return minPrr
+
+def getMeanPRRForShortLinks(nodesInfo):
+
+    higherPRRs = [np.max([linkInfo.linkPRR for linkInfo in nodeInfo.links]) for nodeInfo in nodesInfo]
+    meanPrr = np.mean(higherPRRs)
+
+    return meanPrr
         
 
 def getMeanQualityLinksForNetwork(nodesQualityCounters):

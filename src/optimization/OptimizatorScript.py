@@ -16,6 +16,7 @@ import math
 from src.utils import LoggerUtils
 from src.utils.StopWatch import StopWatch
 import src.optimization.Evolutionary as Evolution
+from src.optimization.Annealing import DistanceAnnealing
 
 class GeneticAlgorithmConstants:
 
@@ -34,29 +35,20 @@ class GeneticAlgorithmConstants:
 
 class SelectiveAneelingConstants:
 
-    # Max number of cycles
-    MAX_CYCLES = 50
+    # Max generations
+    MAX_GENERATIONS = 1000
 
-    # Max number of trials per cycle
-    MAX_TRIALS = 50
+    # Steps
+    STEPS = 100000
 
-    # Number of accepted solutions
-    ACCEPTED_SOLUTIONS = 0
-
-    # Probability of accepting worse solution at the start
-    START_PROB = 0.7
-
-    # Probability of accepting worse solution at the end
-    END_PROB = 0.001
+    # Copy strategy
+    COPY_STRATEGY = "slice"
 
     # Initial temperature
-    START_TEMPERATURE = -1.0 / math.log(START_PROB)
+    TMAX = 20
 
     # Final temperature
-    END_TEMPERATURE = -1.0 / math.log(END_PROB)
-
-    # Fractional reduction every cycle
-    FRACTIONAL_REDUCTION = np.power((END_TEMPERATURE / START_TEMPERATURE), 1.0 / (MAX_CYCLES - 1.0))
+    TMIN = 0.1
 
 
 
@@ -144,7 +136,7 @@ def optimize():
     stopwatch_loop_2 = StopWatch()
 
     # Main loop for the second optimization
-    while generation < metrics.MAX_GENERATIONS and fitness.minValidLinks >= 2 and fitness.avgPRR > LinkService.getPRRBounds().lower:
+    while generation < metrics.MAX_GENERATIONS and fitness.minValidLinks >= 2:
         # First find the min number n of nodes of node at each side of the nxn grid
         
         generation += 1
@@ -163,15 +155,53 @@ def optimize():
     fitness = NetworkModel.getFitnessForVariables(n1, n2, n3, n4)
 
     logger.info('Finished second optimization with %s generations. Total time: %s.' % (generation, stopwatch_loop_2.read()))
-    logger.info('OPTIMAL FOR SECOND OPTIMIZATION: N1: {}, N2: {}, N3: {}, N4: {} '.format(n1, n2, n3, n4))
-    logger.info('FITNESS FOR SECOND OPTIMIZATION: {}'.format(fitness))
+    logger.info('Optimal for second optimization: N1: {}, N2: {}, N3: {}, N4: {} '.format(n1, n2, n3, n4))
+    logger.info('Fitness for second optimization: {}'.format(fitness))
 
+    # Retrieve network 
     network = PreProcess.generateNetworkForConstants(n1, n2, n3, n4)
 
     metrics = SelectiveAneelingConstants()
 
     logger.info('Starting third optimization. Selective aneeling')
 
+    networkArea = list(network.get('N4'))
+    networkArea.pop()
+
+    fitness = NetworkModel.getFitnessForNetwork(networkArea)
+    generation = 1
+
+    # Define area boundaries
+    boundaries = dict()
+    boundaries['MIN_X'] = GlobalParameters.N4_DIM.top_left[0]
+    boundaries['MAX_X'] = GlobalParameters.N4_DIM.botom_right[0]
+    boundaries['MIN_Y'] = GlobalParameters.N4_DIM.botom_right[1]
+    boundaries['MAX_Y'] = GlobalParameters.N4_DIM.top_left[1]
+
+    # Finds the optimal number of nodes within area maximizing the distance between them
+    while generation < metrics.MAX_GENERATIONS and fitness.minValidLinks >= 2 and len(networkArea) >= 2:
+
+        # Configuring Annealer
+        annealer = DistanceAnnealing(networkArea, boundaries)
+        annealer.copy_strategy = metrics.COPY_STRATEGY
+
+        # Calibrating Annealer
+        click.secho('Calibrating annealer', fg='yellow')
+        auto_schedule = annealer.auto(minutes=1)
+        annealer.set_schedule(auto_schedule)
+        click.secho('Annealer calibrated! Parameters: {}'.format(auto_schedule), fg='green')
+
+        networkArea, energy = annealer.anneal()
+        
+        fitness = NetworkModel.getFitnessForNetwork(networkArea)
+
+        logger.info("[GEN {}] Number of Links: {}  Energy: {}, fitness: {}".format(len(networkArea), generation, energy, fitness))
+
+        generation += 1
+        current_optimal_network_area = networkArea
+        networkArea.pop()
+    
+        
 
 
 
