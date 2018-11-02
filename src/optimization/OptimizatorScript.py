@@ -16,7 +16,7 @@ import math
 from src.utils import LoggerUtils
 from src.utils.StopWatch import StopWatch
 import src.optimization.Evolutionary as Evolution
-from src.optimization.Annealing import DistanceAnnealing
+from src.optimization.Annealing import DistanceAnnealing, PositionAnnealing
 
 class GeneticAlgorithmConstants:
 
@@ -59,6 +59,8 @@ def optimize():
     alghorithm.
     """
     stopwatch = StopWatch()
+
+    ANNEAL_AREA = False
     logger = LoggerUtils.configure_log(name='Optimization script', use_console=True)
 
     click.clear()
@@ -166,7 +168,7 @@ def optimize():
     logger.info('Starting third optimization. Selective aneeling')
 
     networkArea = list(network.get('N4'))
-    networkArea.pop()
+    current_optimal_network_area = networkArea    
 
     fitness = NetworkModel.getFitnessForNetwork(networkArea)
     generation = 1
@@ -179,7 +181,10 @@ def optimize():
     boundaries['MAX_Y'] = GlobalParameters.N4_DIM.top_left[1]
 
     # Finds the optimal number of nodes within area maximizing the distance between them
-    while generation < metrics.MAX_GENERATIONS and fitness.minValidLinks >= 2 and len(networkArea) >= 2:
+    while generation < metrics.MAX_GENERATIONS and fitness.minValidLinks >= 2 and len(networkArea) >= 2 and ANNEAL_AREA:
+
+        current_optimal_network_area = networkArea
+        networkArea.pop()
 
         # Configuring Annealer
         annealer = DistanceAnnealing(networkArea, boundaries)
@@ -198,13 +203,34 @@ def optimize():
         logger.info("[GEN {}] Number of Links: {}  Energy: {}, fitness: {}".format(len(networkArea), generation, energy, fitness))
 
         generation += 1
-        current_optimal_network_area = networkArea
-        networkArea.pop()
-    
         
+    
+    logger.info('Finished second optimization. Nodes positions inside area defined. {} nodes installed.'.format(current_optimal_network_area))
 
+    network['N4'] = np.array(current_optimal_network_area)
 
+    lines = ['N1', 'N2', 'N3']
 
+    for line in lines:
+        nodeArray = list(network.get(line))
+        logger.info('Annealing nodes in %s line. Current line have %s nodes.' %(line, len(nodeArray)))
+        annealer = PositionAnnealing(nodeArray)
+        annealer.copy_strategy = metrics.COPY_STRATEGY
+
+        click.secho('Calibrating annealer.', fg='yellow')
+
+        auto_schedule = annealer.auto(minutes=1)
+        annealer.set_schedule(auto_schedule)
+
+        click.secho('Annealer calibrated!', fg='green')
+        logger.info('Annealer parameters: {}'.format(auto_schedule))
+
+        nodeArray, energy = annealer.anneal()
+
+        network[line] = nodeArray
+    
+    click.secho('Finished Optimization', fg='green')
+    logger.info('Finished network optimization. Total elapsed time: {}'.format(stopwatch.read()))
 
 
 if __name__ == '__main__':

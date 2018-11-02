@@ -60,7 +60,13 @@ class Node:
         else:
             raise ValueError("No points configurated for current node.")
     
-
+    def setPoints(self, points):
+        if hasattr(self, "xPos") and hasattr(self, "yPos"):
+            self.xPos = points[0]
+            self.yPos = points[1]
+        else:
+            raise ValueError("No points cofigured for current node.")
+    
     def __sub__(self, other):
         resp = Node(None, None)
         resp.xPos = self.xPos - other.xPos
