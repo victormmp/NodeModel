@@ -308,12 +308,11 @@ def friss(d):
 
 
 def shadowing(d):
-    #TODO: Get shadowing based on friss and PathLoss
 
     pr0 = friss(d)
 
     # pr = convertTodBm(gp.defaultPower) - getPahLoss(d)
-    pr = friss(gp.d0) * math.pow(10,getPahLoss(d)/10) #TODO: Terminar aqui
+    pr = friss(gp.d0) * math.pow(10,getPahLoss(d)/10) 
 
     # pr = gp.defaultPower * (gp.lamb / 4 * math.pi * gp.d0) ^ 2 * (gp.d0 / d) ^ gp.pathLossExp
 
