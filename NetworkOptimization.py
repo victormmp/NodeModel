@@ -16,6 +16,8 @@ import click
 
 from tests import NetworkTest as tests
 from tests import PreProcessTest as preProcTest
+from src.optimization import OptimizatorScript as optimizator
+from tests import AnnealingTests
 
 
 @click.group()
@@ -27,6 +29,9 @@ def cli(context):
 cli.add_command(tests.init)
 cli.add_command(preProcTest.testLine)
 cli.add_command(preProcTest.testArea)
+cli.add_command(optimizator.optimize)
+cli.add_command(AnnealingTests.test)
+cli.add_command(AnnealingTests.testPosition)
 
 if __name__=='__main__':
     cli()

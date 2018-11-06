@@ -23,13 +23,20 @@ class Node:
         self.latitude = latitude
         self.longitude = longitude
         
-    def setCoordinates(self, coordinates: list):
-        self.longitude = coordinates[0]
-        self.latitude = coordinates[1]
+    def setCoordinates(self, coordinates: list, latLon = False):
+        if (latLon):
+            self.longitude = coordinates[1]
+            self.latitude = coordinates[0]
+        else:
+            self.longitude = coordinates[0]
+            self.latitude = coordinates[1]
 
-    def extractNode(self, coordinates: list, origin):
-        self.setCoordinates(coordinates)
-        originPoint: tuple = (origin[1], origin[0])
+    def extractNode(self, coordinates: list, origin, latLon = False):
+        self.setCoordinates(coordinates, latLon=latLon)
+        if (latLon):
+            originPoint: tuple = (origin[0], origin[1])
+        else:
+            originPoint: tuple = (origin[1], origin[0])
         thisPoint: tuple = self.getCoordinates()
         distanceX = vincenty(originPoint, (originPoint[0], thisPoint[1])) * 1000
         distanceY = vincenty(originPoint, (thisPoint[0], originPoint[1])) * 1000
@@ -60,7 +67,13 @@ class Node:
         else:
             raise ValueError("No points configurated for current node.")
     
-
+    def setPoints(self, points):
+        if hasattr(self, "xPos") and hasattr(self, "yPos"):
+            self.xPos = points[0]
+            self.yPos = points[1]
+        else:
+            raise ValueError("No points cofigured for current node.")
+    
     def __sub__(self, other):
         resp = Node(None, None)
         resp.xPos = self.xPos - other.xPos

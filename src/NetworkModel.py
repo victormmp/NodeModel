@@ -24,13 +24,20 @@ def getFitnessForNetwork(nodeList):
     # Initialize Global Parameters
     gp.initializeGlobalParameters(ZigBee)
     
-    Fitness = namedtuple("Fitness", ["meanValidLinks"])
+    # Fitness = namedtuple("Fitness", ["minValidLinks", "minPRR", "avgPRR"])
+    Fitness = namedtuple("Fitness", ["minValidLinks", "minPRR", "meanPRR"])
     
     linksForEachNode = linkService.getLinksForEachNode(nodeList)
     qualityLinksCounter = linkService.countLinksByQuality(linksForEachNode)
-    meanQuality = linkService.getMeanQualityLinksForNetwork(qualityLinksCounter)
     
-    qualityIndicators = Fitness(meanValidLinks=meanQuality)
+    # minPrr = linkService.getMinPRRForNetwork(linksForEachNode)
+    # avgPrr = linkService.getWeightedAveragePRRForNetwork(linksForEachNode)
+    meanQuality = linkService.getMeanQualityLinksForNetwork(qualityLinksCounter)
+    minQuality = linkService.getMinQualityLinksForNetwork(qualityLinksCounter)
+    minPrr = linkService.getMinPRRForShortLinks(linksForEachNode)
+    # meanPrr = linkService.getMeanPRRForShortLinks(linksForEachNode)
+    
+    qualityIndicators = Fitness(minValidLinks=minQuality, minPRR=minPrr, meanPRR=meanQuality)
     
     return qualityIndicators
     
@@ -53,18 +60,25 @@ def getSNRForLink(nodeA: Node, nodeB: Node):
 def getFitnessForVariables(n1: int, n2: int, n3: int, n4: int):
     """
     Get fitness for a set of variables.
+    
+    This method receives a set of parameters indicating the number of nodes at each
+    possible diistribution previouly defined as alghorithm constants.
+
+    The returned object is a fitness indicator.
     """
 
-    click.secho("\nGenerating fitness for variables", fg='yellow')
-    click.secho("For N1: %s nodes\nFor N2: %s nodes\nFor N3: %s nodes\nFor N4: %s x %s node grid\n" %(n1, n2, n3, n4, n4), fg='yellow')
+    # click.secho("\nGenerating fitness for variables", fg='yellow')
+    # click.secho("For N1: %s nodes\nFor N2: %s nodes\nFor N3: %s nodes\nFor N4: %s x %s node grid\n" %(n1, n2, n3, n4, n4), fg='yellow')
 
-    gp.loadConstantsFromFile(CONSTANTS_FILE)
+    sink = gp.loadConstantsFromFile(CONSTANTS_FILE)
     n1_nodes = PreProcess.generateNodeListForLine(n1, gp.N1_DIM)
     n2_nodes = PreProcess.generateNodeListForLine(n2, gp.N2_DIM)
     n3_nodes = PreProcess.generateNodeListForLine(n3, gp.N3_DIM)
     n4_nodes = PreProcess.generateNodeListForArea(n4, gp.N4_DIM)
 
     nodes = np.concatenate((n1_nodes, n2_nodes, n3_nodes, n4_nodes))
+    nodes = np.append(nodes, sink)
 
     fitness = getFitnessForNetwork(nodes)
+    
     return fitness

@@ -30,6 +30,7 @@ from src.model.NetNode import *
 
 sys.path.insert(0, r'../../')
 
+# MODEL PARAMETERS FOR CALCULATIONS
 
 R = 0.25                        # Data rate in bits
 Bn = 0.22                       # Noise bandwidth
@@ -43,11 +44,13 @@ L = 1                           # System loss factor not related to the propagat
 arq = 60                        # File size in bytes
 pathLossExp = 2                 # For initial tests, see table in docstring (1.1)
 std_db = 0.1                    # Deviation used to calculate path loss
-d0 = 10                         # Reference distance for Friss formula
+d0 = 3.25                       # Reference distance for Friss formula
 defaultRate = 5e6               # Default transmission rate
 limiar_snr = 30                 # SNR upper limit in dB
 limiar_snr_delta = 1            # SNR lower limit in dB
 limiar_prr = 0                  # Lower PRR limit, where communication is impossible
+
+# OPTIMIZATION PARAMETERS
 
 dim = namedtuple("dim",["start", "end"])
 area = namedtuple("area", ["top_left", "botom_right"])
@@ -57,6 +60,8 @@ N2_DIM = dim(start=(0.0, 0.0), end=(10.0, 10.0))
 N3_DIM = dim(start=(0.0, 0.0), end=(0.0, 10.0))
 N4_DIM = area(top_left=(0.0, 0.0), botom_right=(10.0, 10.0))
 SINK_NODE = Node(0.0, 0.0)
+
+# GLOBAL OPTIONS METHODS
 
 def setWhiteNoiseVariance():
    # Pr = linkService.friss(d0)
@@ -80,8 +85,12 @@ def initializeGlobalParameters(model):
     getParametersFromModel(model)
     setWhiteNoiseVariance()
     setTransmissionPowerVariance()
-    if LOAD_CONSTANTS_FROM_FILE: loadConstantsFromFile()
+    # if LOAD_CONSTANTS_FROM_FILE: loadConstantsFromFile()
     
+def set_d0(distance):
+    global d0
+
+    d0 = distance
 
 def getParametersFromModel(model):
     """
@@ -108,7 +117,7 @@ def getParametersFromModel(model):
     lamb = 3e8/freq
     arq = model.arq
 
-    print("Using parameters from %s radio model." %(model.name))
+    # print("Using parameters from %s radio model." %(model.name))
 
     return True
 
@@ -135,3 +144,5 @@ def loadConstantsFromFile(file_path=CONSTANTS_FILE):
     N2_DIM = dim(start=nodeCoordinate[2], end=nodeCoordinate[3])
     N3_DIM = dim(start=nodeCoordinate[4], end=nodeCoordinate[5])
     N4_DIM = area(top_left=nodeCoordinate[6], botom_right=nodeCoordinate[7])
+
+    return SINK_NODE

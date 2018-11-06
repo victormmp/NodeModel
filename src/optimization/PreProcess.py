@@ -3,6 +3,7 @@
 from src.model import LinkService as linkService, GlobalParameters as gp
 from src.model.RadioModels import *
 from src.model.NetNode import *
+from settings import *
 from collections import namedtuple
 import numpy as np
 import math
@@ -33,9 +34,11 @@ def generateNodeListForLine(n: int, dimension):
     """
     N = []
     
+    if n == 0:
+        return np.array([])
     if n == 1:
-        posX = (dimension.end[0] - dimension.start[0]) / 2.0
-        posY = (dimension.end[1] - dimension.start[1]) / 2.0
+        posX = (dimension.end[0] - dimension.start[0]) / 2.0 + dimension.start[0]
+        posY = (dimension.end[1] - dimension.start[1]) / 2.0 + dimension.start[1]
         node = Node(posX, posY)
         N.append(node)
     elif n == 2:
@@ -64,6 +67,13 @@ def generateNodeListForArea(n: int, dimension):
     """
     Generate a grid of n x n nodes, within the specified grid area defined by dimension parameter.
     """
+
+    if n == 1:
+        dim_x = (dimension.top_left[0] + abs(dimension.top_left[0] - dimension.botom_right[0])) / 2
+        area_dim = dim(start = (dim_x, dimension.top_left[1]),
+                       end = (dim_x, dimension.botom_right[1]))
+        return generateNodeListForLine(n, area_dim)
+
     
     up_dim = dim(start = (dimension.top_left), 
                     end = (dimension.botom_right[0],
@@ -84,3 +94,39 @@ def generateNodeListForArea(n: int, dimension):
         columns += column.tolist()
 
     return np.array(columns)
+
+
+def ditributeNodesInArea(n: int, dimension):
+    """
+    Distribute n nodes inside all box area defined by the dimension parameter.
+    The dimension must have the coordinates of the top-left and the botom-right vertices.
+
+    This method return a numpy.ndarray object with all nodes.
+    """
+
+    if n <= 2:
+        return generateNodeListForArea(n, dimension)
+    
+    
+
+
+def generateNetworkForConstants(n1, n2, n3, n4):
+    """
+    Generate an identified set with each node distribution
+    of the network.
+
+    The input parameters are the number of nodes that compose each 
+    distribution configuration.
+
+    As an output, the method delivers the current network, splited in
+    distribution areas in a dictionary object.
+    """
+    
+    network = dict()
+    network['SINK'] = gp.loadConstantsFromFile(CONSTANTS_FILE)
+    network['N1'] = generateNodeListForLine(n1, gp.N1_DIM)
+    network['N2'] = generateNodeListForLine(n2, gp.N2_DIM)
+    network['N3'] = generateNodeListForLine(n3, gp.N3_DIM)
+    network['N4'] = generateNodeListForArea(n4, gp.N4_DIM)
+
+    return network

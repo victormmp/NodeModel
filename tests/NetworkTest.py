@@ -113,7 +113,7 @@ def test6():
         print("Node(%s, %s): Good: %s, Medium: %s, Bad: %s" %(node.node.xPos, node.node.yPos, node.good, node.medium, node.bad))
 
 def test7():
-    fitness = NetworkModel.getFitnessForVariables(6, 4, 3, 2)
+    fitness = NetworkModel.getFitnessForVariables(7, 11, 5, 10)
     click.echo("Fitness: %s " % fitness.__str__())
 
 

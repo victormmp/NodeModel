@@ -33,7 +33,6 @@ def getLinkList(nodeList):
 
     linkList = np.array(linkList)
 
-    print("Total number of links: ", linkList.size)
     return linkList
 
 
@@ -199,13 +198,45 @@ def countLinksByQuality(nodesInfo):
     return nodesQualityCounters
 
 
+def getMinPRRForNetwork(nodesInfo):
+
+    minimum = np.mean([np.min([linkInfo.linkPRR for linkInfo in nodeInfo.links]) for nodeInfo in nodesInfo])
+
+    return minimum
+    
+
+def getWeightedAveragePRRForNetwork(nodesInfo):
+
+    mean = np.average([np.average([linkInfo.linkPRR for linkInfo in nodeInfo.links], 
+                              weights=[1 / linkInfo.link.getDistance() for linkInfo in nodeInfo.links])
+                               for nodeInfo in nodesInfo])
+
+    return mean
+
+
+def getMinPRRForShortLinks(nodesInfo):
+
+    higherPRRs = [np.max([linkInfo.linkPRR for linkInfo in nodeInfo.links]) for nodeInfo in nodesInfo]
+    minPrr = np.min(higherPRRs)
+
+    return minPrr
+
+def getMeanPRRForShortLinks(nodesInfo):
+
+    higherPRRs = [np.max([linkInfo.linkPRR for linkInfo in nodeInfo.links]) for nodeInfo in nodesInfo]
+    meanPrr = np.mean(higherPRRs)
+
+    return meanPrr
+        
+
 def getMeanQualityLinksForNetwork(nodesQualityCounters):
     
-    meanValidLinks = lambda nodesQualityCounters: [(node.good + node.medium) for node in nodesQualityCounters]
+    return np.mean([(node.good + node.medium) for node in nodesQualityCounters])
     
-    result = np.mean(meanValidLinks(nodesQualityCounters))
-    
-    return result
+
+def getMinQualityLinksForNetwork(nodesQualityCounters):
+
+    return np.min([(node.good + node.medium) for node in nodesQualityCounters])
     
     
 def calculateLinkPRR(link: Link):
@@ -271,19 +302,17 @@ def friss(d):
     :param L: System loss factor not related to propagation
     :return: Signal power at receiver
     """
-
     pr = (gp.defaultPower * gp.Gt * gp.Gr * np.power(gp.lamb, 2)) / (np.power((4 * math.pi * d) ,2) * gp.L)
 
     return pr
 
 
 def shadowing(d):
-    #TODO: Get shadowing based on friss and PathLoss
 
     pr0 = friss(d)
 
     # pr = convertTodBm(gp.defaultPower) - getPahLoss(d)
-    pr = friss(gp.d0) * math.pow(10,getPahLoss(d)/10) #TODO: Terminar aqui
+    pr = friss(gp.d0) * math.pow(10,getPahLoss(d)/10) 
 
     # pr = gp.defaultPower * (gp.lamb / 4 * math.pi * gp.d0) ^ 2 * (gp.d0 / d) ^ gp.pathLossExp
 
