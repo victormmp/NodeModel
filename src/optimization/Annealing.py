@@ -63,7 +63,7 @@ class PositionAnnealing(Annealer):
         super(PositionAnnealing, self).__init__(state)
     
     def move(self):
-        index = random.choice(range(len(self.state)))
+        index = random.randint(0, len(self.state) - 1)
         node: Node = self.state[index]
         nodeInitialPosition = self.initialPositions[index]
 
@@ -84,12 +84,14 @@ class PositionAnnealing(Annealer):
 
     def energy(self):
         fitness = NetworkModel.getFitnessForNetwork(self.state)
-        linkList = LinkService.getLinkList(self.state)
+        # linkList = LinkService.getLinkList(self.state)
         # minDist = min([link.distance for link in linkList])
 
-        penalty = lambda fitness: 1e-16 if fitness.minPRR < 0.1 else 1
+        # penalty = lambda fitness: 1e-16 if fitness.minPRR < 0.1 else 1
 
-        energy = - (fitness.minPRR)
+        energy = - (fitness.meanPRR)
+
+        return energy
 
 
 

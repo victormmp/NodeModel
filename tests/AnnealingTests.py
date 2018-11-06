@@ -1,7 +1,6 @@
 from src.optimization import PreProcess
 from src.optimization.Annealing import DistanceAnnealing, PositionAnnealing
 import matplotlib.pyplot as plt
-import numpy as numpy
 import src.model.GlobalParameters as gp
 from settings import *
 import click
@@ -48,14 +47,15 @@ def test():
 
     plot(nodes)
 
-def plot(nodes):
+def plot(nodes, add=False, color='blue'):
     x = [node.xPos for node in nodes]
     y = [node.yPos for node in nodes]
-    plt.plot(x,y, 'o')
+    plt.plot(x,y, 'o', c=color)
     for x1, y1 in zip(x,y):
         plt.annotate(('%s, %s' %(x1, y1)), xy=(x1, y1))
 
-    plt.show()
+    if not add :
+        plt.show()
 
 @click.command('test-position-annealer')
 def testPosition():
@@ -66,7 +66,7 @@ def testPosition():
     gp.loadConstantsFromFile(CONSTANTS_FILE)
     nodes = list(PreProcess.generateNodeListForLine(7, gp.N1_DIM))
 
-    plot(nodes)
+    plot(nodes, add=True)
 
     click.echo('Node network generated.')
 
@@ -79,22 +79,23 @@ def testPosition():
 
     click.echo('Number of nodes in the network: {}'.format(len(nodes)))
 
-    annealer = DistanceAnnealing(nodes, boundaries, step=5)
+    annealer = PositionAnnealing(nodes, step=2)
     annealer.copy_strategy = "slice"
 
-    # auto_schedule = annealer.auto(minutes=2)
-    # annealer.set_schedule(auto_schedule)
+    click.secho('Calibrating annealer.', fg='yellow')
+    auto_schedule = annealer.auto(minutes=2)
+    annealer.set_schedule(auto_schedule)
 
-    annealer.Tmax = 16
-    annealer.Tmin = 4e-16
-    click.secho('Configurating annealer. Tmax: {}, Tmin: {}, Steps: {}'.format(annealer.Tmax, annealer.Tmin, annealer.steps), fg='yellow')
-    # click.secho('Annealer calibrated. Parameters: {}'. format(auto_schedule), fg='green')
+    # annealer.Tmax = 16
+    # annealer.Tmin = 4e-16
+    # click.secho('Configurating annealer. Tmax: {}, Tmin: {}, Steps: {}'.format(annealer.Tmax, annealer.Tmin, annealer.steps), fg='yellow')
+    click.secho('Annealer calibrated. Parameters: {}'. format(auto_schedule), fg='green')
 
     click.echo('Starting annealer')
     nodes, energy = annealer.anneal()
     click.secho('Annealing completed. Ploting new grid.', fg='green')
 
-    plot(nodes)
+    plot(nodes, color='red')
 
 if __name__ == '__main__':
-    test()
+    testPosition()
