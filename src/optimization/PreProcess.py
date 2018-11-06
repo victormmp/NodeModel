@@ -69,7 +69,7 @@ def generateNodeListForArea(n: int, dimension):
     """
 
     if n == 1:
-        dim_x = (dimension.top_left[0] - dimension.botom_right[0]) / 2
+        dim_x = (dimension.top_left[0] + abs(dimension.top_left[0] - dimension.botom_right[0])) / 2
         area_dim = dim(start = (dim_x, dimension.top_left[1]),
                        end = (dim_x, dimension.botom_right[1]))
         return generateNodeListForLine(n, area_dim)

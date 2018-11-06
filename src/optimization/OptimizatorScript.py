@@ -13,7 +13,7 @@ import random
 import copy
 import logging
 import math
-from src.utils import LoggerUtils
+from src.utils import LoggerUtils, Plotter
 from src.utils.StopWatch import StopWatch
 import src.optimization.Evolutionary as Evolution
 from src.optimization.Annealing import DistanceAnnealing, PositionAnnealing
@@ -137,6 +137,14 @@ def optimize():
     logger.info('Initial genome [N1 = {}, N2 = {}, N3 = {}, N4 = {}].'. format(n1, n2, n3, n4))
     stopwatch_loop_2 = StopWatch()
 
+
+    network = PreProcess.generateNetworkForConstants(n1, n2, n3, n4) 
+    lines = ['N1', 'N2', 'N3', 'N4']
+    nodeArray = [network.get('SINK')]
+    for line in lines:
+        nodeArray += list(network.get(line))
+    Plotter.plot_node_list(nodeArray, title='First Optimization Result', xLabel='Grid Coordinate (m)', yLabel='Grid Coordinate (m)')
+
     # Main loop for the second optimization
     while generation < metrics.MAX_GENERATIONS and fitness.minValidLinks >= 2:
         # First find the min number n of nodes of node at each side of the nxn grid
@@ -165,12 +173,11 @@ def optimize():
 
     metrics = SelectiveAneelingConstants()
 
-    logger.info('Starting third optimization. Selective aneeling')
-
     networkArea = list(network.get('N4'))
     current_optimal_network_area = networkArea    
 
-    fitness = NetworkModel.getFitnessForNetwork(networkArea)
+    if len(networkArea) >= 2 :
+        fitness = NetworkModel.getFitnessForNetwork(networkArea)
     generation = 1
 
     # Define area boundaries
@@ -179,6 +186,8 @@ def optimize():
     boundaries['MAX_X'] = GlobalParameters.N4_DIM.botom_right[0]
     boundaries['MIN_Y'] = GlobalParameters.N4_DIM.botom_right[1]
     boundaries['MAX_Y'] = GlobalParameters.N4_DIM.top_left[1]
+
+    if ANNEAL_AREA: logger.info('Starting third optimization. Selective aneeling')
 
     # Finds the optimal number of nodes within area maximizing the distance between them
     while generation < metrics.MAX_GENERATIONS and fitness.minValidLinks >= 2 and len(networkArea) >= 2 and ANNEAL_AREA:
@@ -205,32 +214,41 @@ def optimize():
         generation += 1
         
     
-    logger.info('Finished second optimization. Nodes positions inside area defined. {} nodes installed.'.format(current_optimal_network_area))
+    logger.info('Finished second optimization. Nodes positions inside area defined. {} nodes installed.'.format(len(current_optimal_network_area)))
 
+    # Saving the new area node disposition
     network['N4'] = np.array(current_optimal_network_area)
 
-    lines = ['N1', 'N2', 'N3']
+    # Adding all nodes of the network in one array
+
+    lines = ['N1', 'N2', 'N3', 'N4']
+    nodeArray = [network.get('SINK')]
 
     for line in lines:
-        nodeArray = list(network.get(line))
-        logger.info('Annealing nodes in %s line. Current line have %s nodes.' %(line, len(nodeArray)))
-        annealer = PositionAnnealing(nodeArray)
-        annealer.copy_strategy = metrics.COPY_STRATEGY
+        nodeArray += list(network.get(line))
+    
+    Plotter.plot_node_list(nodeArray, title='Second Optimization Result', xLabel='Grid Coordinate (m)', yLabel='Grid Coordinate (m)')
 
-        click.secho('Calibrating annealer.', fg='yellow')
+    logger.info('Annealing nodes. Current configuration have %s nodes.' %(len(nodeArray)))
+    annealer = PositionAnnealing(nodeArray)
+    annealer.copy_strategy = metrics.COPY_STRATEGY
 
-        auto_schedule = annealer.auto(minutes=1)
-        annealer.set_schedule(auto_schedule)
+    click.secho('Calibrating annealer.', fg='yellow')
 
-        click.secho('Annealer calibrated!', fg='green')
-        logger.info('Annealer parameters: {}'.format(auto_schedule))
+    auto_schedule = annealer.auto(minutes=1)
+    annealer.set_schedule(auto_schedule)
 
-        nodeArray, energy = annealer.anneal()
+    click.secho('Annealer calibrated!', fg='green')
+    logger.info('Annealer parameters: {}'.format(auto_schedule))
 
-        network[line] = nodeArray
+    nodeArray, energy = annealer.anneal()
+
+    network[line] = nodeArray
     
     click.secho('Finished Optimization', fg='green')
     logger.info('Finished network optimization. Total elapsed time: {}'.format(stopwatch.read()))
+
+    Plotter.plot_node_list(nodeArray, title='Final Network Layout', xLabel='Grid Coordinate (m)', yLabel='Grid Coordinate (m)')
 
 
 if __name__ == '__main__':
