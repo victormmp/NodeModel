@@ -19,7 +19,7 @@ def euclidian(vector1, vector2):
     return math.sqrt(sum([(v1 - v2)**2 for v1, v2 in zip(vector1, vector2)]))
 
 def direction(vector1, vector2):
-    module = euclidian(vector1, vector2)
+    module = vincenty(vector1, vector2)*1000
     return [(v2 - v1) / module for v1, v2 in zip(vector1, vector2)]
 
 def next_point(point, direct, length):
@@ -37,27 +37,35 @@ def generateNodeListForLine(n: int, dimension):
     if n == 0:
         return np.array([])
     if n == 1:
-        posX = (dimension.end[0] - dimension.start[0]) / 2.0 + dimension.start[0]
-        posY = (dimension.end[1] - dimension.start[1]) / 2.0 + dimension.start[1]
-        node = Node(posX, posY)
+        # posX = (dimension.end[0] - dimension.start[0]) / 2.0 + dimension.start[0]
+        # posY = (dimension.end[1] - dimension.start[1]) / 2.0 + dimension.start[1]
+
+        lon = (dimension.end[0] - dimension.start[0]) / 2.0 + dimension.start[0]
+        lat = (dimension.end[1] - dimension.start[1]) / 2.0 + dimension.start[1]
+
+        node = Node(latitude=lat, longitude=lon)
         N.append(node)
     elif n == 2:
-        node1 = Node(xPos=dimension.start[0], yPos=dimension.start[1])
-        node2 = Node(xPos=dimension.end[0], yPos=dimension.end[1])
+        # node1 = Node(xPos=dimension.start[0], yPos=dimension.start[1])
+        # node2 = Node(xPos=dimension.end[0], yPos=dimension.end[1])
+
+        node1 = Node(latitude=dimension.start[0], longitude=dimension.start[1])
+        node2 = Node(latitude=dimension.end[0], longitude=dimension.end[1])
+
         N.append(node1)
         N.append(node2)
     else:
-        module =  euclidian(dimension.start, dimension.end)
+        module =  vincenty(dimension.start, dimension.end)*1000
         gap = module / (n-1)
         dirr = direction(dimension.start, dimension.end)
 
-        node1 = Node(xPos=dimension.start[0], yPos=dimension.start[1])
+        node1 = Node(latitude=dimension.start[0], longitude=dimension.start[1])
         N.append(node1)
 
         for _ in range(n-1):
             last = N[-1]
-            nextCoord = next_point(last.getPoints(), dirr, gap)
-            next = Node(nextCoord[0], nextCoord[1])
+            nextCoord = next_point(last.getCoordinates(), dirr, gap)
+            next = Node(latitude=nextCoord[0], longitude=nextCoord[1])
             N.append(next)
     
     return np.array(N)
@@ -84,7 +92,10 @@ def generateNodeListForArea(n: int, dimension):
                     end = dimension.botom_right)
     low_row = generateNodeListForLine(n, low_dim)
 
-    dim_vector = [dim(start=lowNode.getPoints(), end=upNode.getPoints())
+    # dim_vector = [dim(start=lowNode.getPoints(), end=upNode.getPoints())
+    #                     for lowNode, upNode in zip(low_row, up_row)]
+
+    dim_vector = [dim(start=lowNode.getCoordinates(), end=upNode.getCoordinates())
                         for lowNode, upNode in zip(low_row, up_row)]
     
     columns = []

@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 def plot_node_list(nodes, title:str=None, xLabel:str=None, yLabel:str=None, xLim:tuple=None, yLim:tuple=None):
     """Plot a node list. Ths list must be a python list() or a numpy.ndarray object."""
 
-    x = [node.xPos for node in nodes]
-    y = [node.yPos for node in nodes]
+    x = [node.longitude for node in nodes]
+    y = [node.latitude for node in nodes]
 
     plt.plot(x,y, 'o')
     plt.title(title)

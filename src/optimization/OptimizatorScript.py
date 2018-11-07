@@ -7,13 +7,14 @@ import src.NetworkModel as NetworkModel
 import src.model.GlobalParameters as GlobalParameters
 import src.optimization.PreProcess as PreProcess
 import src.model.LinkService as LinkService
+from settings import OUTPUT_FILE
 import numpy as np
 import scipy.optimize as spOpt
 import random
 import copy
 import logging
 import math
-from src.utils import LoggerUtils, Plotter
+from src.utils import LoggerUtils, Plotter, GeoUtils
 from src.utils.StopWatch import StopWatch
 import src.optimization.Evolutionary as Evolution
 from src.optimization.Annealing import DistanceAnnealing, PositionAnnealing
@@ -143,7 +144,7 @@ def optimize():
     nodeArray = [network.get('SINK')]
     for line in lines:
         nodeArray += list(network.get(line))
-    Plotter.plot_node_list(nodeArray, title='First Optimization Result', xLabel='Grid Coordinate (m)', yLabel='Grid Coordinate (m)')
+    # Plotter.plot_node_list(nodeArray, title='First Optimization Result', xLabel='Grid Coordinate (m)', yLabel='Grid Coordinate (m)')
 
     # Main loop for the second optimization
     while generation < metrics.MAX_GENERATIONS and fitness.minValidLinks >= 2:
@@ -227,7 +228,7 @@ def optimize():
     for line in lines:
         nodeArray += list(network.get(line))
     
-    Plotter.plot_node_list(nodeArray, title='Second Optimization Result', xLabel='Grid Coordinate (m)', yLabel='Grid Coordinate (m)')
+    # Plotter.plot_node_list(nodeArray, title='Second Optimization Result', xLabel='Grid Coordinate (m)', yLabel='Grid Coordinate (m)')
 
     logger.info('Annealing nodes. Current configuration have %s nodes.' %(len(nodeArray)))
     annealer = PositionAnnealing(nodeArray)
@@ -247,6 +248,10 @@ def optimize():
     
     click.secho('Finished Optimization', fg='green')
     logger.info('Finished network optimization. Total elapsed time: {}'.format(stopwatch.read()))
+    logger.info('Writing result geoJSON at {}.'.format(OUTPUT_FILE))
+
+    nodesCoordinates = [node.getCoordinates() for node in nodeArray]
+    GeoUtils.writeGeoJSON(nodesCoordinates, OUTPUT_FILE)
 
     Plotter.plot_node_list(nodeArray, title='Final Network Layout', xLabel='Grid Coordinate (m)', yLabel='Grid Coordinate (m)')
 
