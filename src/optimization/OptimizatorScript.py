@@ -62,7 +62,7 @@ def optimize():
     stopwatch = StopWatch()
 
     ANNEAL_AREA = False
-    logger = LoggerUtils.configure_log(name='Optimization script', use_console=True)
+    logger = LoggerUtils.configure_log(name='Optimization script', use_console=True, use_file=True)
 
     click.clear()
 
@@ -147,7 +147,7 @@ def optimize():
     # Plotter.plot_node_list(nodeArray, title='First Optimization Result', xLabel='Grid Coordinate (m)', yLabel='Grid Coordinate (m)')
 
     # Main loop for the second optimization
-    while generation < metrics.MAX_GENERATIONS and fitness.minValidLinks >= 2:
+    while generation < metrics.MAX_GENERATIONS and fitness.minValidLinks >= 3:
         # First find the min number n of nodes of node at each side of the nxn grid
         
         generation += 1
@@ -229,18 +229,23 @@ def optimize():
         nodeArray += list(network.get(line))
     
     # Plotter.plot_node_list(nodeArray, title='Second Optimization Result', xLabel='Grid Coordinate (m)', yLabel='Grid Coordinate (m)')
-
+    # nodesCoordinates = [node.getCoordinates() for node in nodeArray]
+    # GeoUtils.writeGeoJSON(nodesCoordinates, OUTPUT_FILE)
+    
     logger.info('Annealing nodes. Current configuration have %s nodes.' %(len(nodeArray)))
     annealer = PositionAnnealing(nodeArray)
     annealer.copy_strategy = metrics.COPY_STRATEGY
 
-    click.secho('Calibrating annealer.', fg='yellow')
+    # click.secho('Calibrating annealer.', fg='yellow')
 
-    auto_schedule = annealer.auto(minutes=1)
-    annealer.set_schedule(auto_schedule)
+    # auto_schedule = annealer.auto(minutes=1)
+    # annealer.set_schedule(auto_schedule)
 
-    click.secho('Annealer calibrated!', fg='green')
-    logger.info('Annealer parameters: {}'.format(auto_schedule))
+    # click.secho('Annealer calibrated!', fg='green')
+    # logger.info('Annealer parameters: {}'.format(auto_schedule))
+
+    annealer.Tmax=1.5
+    annealer.Tmin=1e-10
 
     nodeArray, energy = annealer.anneal()
 
