@@ -31,8 +31,9 @@ def testLine(nodes, from_file):
     x = [node.longitude for node in nodeList]
     y = [node.latitude for node in nodeList]
     plt.plot(x,y, 'o')
+    plt.title('Distribuição em Linha para {} roteadores'.format(nodes))
     for x1, y1 in zip(x,y):
-        plt.annotate(('%s, %s' %(x1, y1)), xy=(x1, y1))
+        plt.annotate(('%.2f, %.2f' %(x1, y1)), xy=(x1, y1))
 
     plt.show()
 
@@ -52,8 +53,9 @@ def testArea(nodes, from_file):
     x = [node.longitude for node in nodes2]
     y = [node.latitude for node in nodes2]
     plt.plot(x,y, 'o')
+    plt.title('Distribuição em Área para {} x {} roteadores'.format(nodes, nodes))
     for x1, y1 in zip(x,y):
-        plt.annotate(('%s, %s' %(x1, y1)), xy=(x1, y1))
+        plt.annotate(('%0.2f, %0.2f' %(x1, y1)), xy=(x1, y1))
 
     plt.show()
 

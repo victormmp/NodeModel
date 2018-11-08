@@ -13,6 +13,7 @@ import src.model.LinkService as linkService
 import src.NetworkModel as NetworkModel
 from src.model.GeoService import *
 from src.model.RadioModels import *
+from src.utils.StopWatch import StopWatch
 
 sys.path.insert(0, r'../')
 
@@ -116,6 +117,14 @@ def test7():
     fitness = NetworkModel.getFitnessForVariables(7, 11, 5, 10)
     click.echo("Fitness: %s " % fitness.__str__())
 
+def test8():
+    click.clear()
+    click.secho('Starting Time Test')
+    sw = StopWatch()
+    fitness = NetworkModel.getFitnessForVariables(7, 2, 2, 5)
+    time = sw.read()
+    click.secho('Test finished. Total elapsed time: {}'. format(time))
+
 
 #==================================| COMMAND LINE ACCESS |===============================
 
@@ -152,7 +161,8 @@ def init(context, test):
             '4': test4,
             '5': test5,
             '6': test6,
-            '7':test7
+            '7': test7,
+            '8': test8
         }[test]()
     except KeyError:
         click.secho('ERROR: No test %s defined.' % test, fg='red', bold=True)
