@@ -7,7 +7,7 @@ import src.NetworkModel as NetworkModel
 import src.model.GlobalParameters as GlobalParameters
 import src.optimization.PreProcess as PreProcess
 import src.model.LinkService as LinkService
-from settings import OUTPUT_FILE
+from settings import OUTPUT_PATH
 import numpy as np
 import scipy.optimize as spOpt
 import random
@@ -146,6 +146,9 @@ def optimize():
         nodeArray += list(network.get(line))
     # Plotter.plot_node_list(nodeArray, title='First Optimization Result', xLabel='Grid Coordinate (m)', yLabel='Grid Coordinate (m)')
 
+    nodesCoordinates = [node.getCoordinates() for node in nodeArray]
+    GeoUtils.writeGeoJSON(nodesCoordinates, OUTPUT_PATH + 'first.geojson')
+
     # Main loop for the second optimization
     while generation < metrics.MAX_GENERATIONS and fitness.minValidLinks >= 3:
         # First find the min number n of nodes of node at each side of the nxn grid
@@ -229,8 +232,8 @@ def optimize():
         nodeArray += list(network.get(line))
     
     Plotter.plot_node_list(nodeArray, add=True, annotate=False)
-    # nodesCoordinates = [node.getCoordinates() for node in nodeArray]
-    # GeoUtils.writeGeoJSON(nodesCoordinates, OUTPUT_FILE)
+    nodesCoordinates = [node.getCoordinates() for node in nodeArray]
+    GeoUtils.writeGeoJSON(nodesCoordinates, OUTPUT_PATH + 'second.geojson')
     
     logger.info('Annealing nodes. Current configuration have %s nodes.' %(len(nodeArray)))
     annealer = PositionAnnealing(nodeArray)
@@ -253,10 +256,10 @@ def optimize():
     
     click.secho('Finished Optimization', fg='green')
     logger.info('Finished network optimization. Total elapsed time: {}'.format(stopwatch.read()))
-    logger.info('Writing result geoJSON at {}.'.format(OUTPUT_FILE))
+    logger.info('Writing result geoJSON at {}.'.format(OUTPUT_PATH))
 
     nodesCoordinates = [node.getCoordinates() for node in nodeArray]
-    GeoUtils.writeGeoJSON(nodesCoordinates, OUTPUT_FILE)
+    GeoUtils.writeGeoJSON(nodesCoordinates, OUTPUT_PATH + 'result.geojson')
 
     Plotter.plot_node_list(nodeArray, title='Final Network Layout', xLabel='Grid Coordinate (m)', yLabel='Grid Coordinate (m)',
                             color='red', annotate=False)
