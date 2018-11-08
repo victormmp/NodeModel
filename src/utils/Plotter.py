@@ -14,7 +14,7 @@ def plot_node_list(nodes, title:str=None, xLabel:str=None, yLabel:str=None, xLim
     if yLabel is not None: plt.ylabel(yLabel)
     if xLim is not None: plt.xlim(xLim)
     if yLim is not None: plt.ylim(yLim)
-    if label is not None: plt.set_label(label)
+    if label is not None: plt.legend([label])
 
     if annotate:
         for x1, y1 in zip(x,y):
