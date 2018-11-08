@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 
 def plot_node_list(nodes, title:str=None, xLabel:str=None, yLabel:str=None, xLim:tuple=None, yLim:tuple=None, annotate=True,
-                   add=False, color='blue'):
+                   add=False, color='blue', label=None):
     """Plot a node list. Ths list must be a python list() or a numpy.ndarray object."""
 
     x = [node.longitude for node in nodes]
@@ -14,6 +14,7 @@ def plot_node_list(nodes, title:str=None, xLabel:str=None, yLabel:str=None, xLim
     if yLabel is not None: plt.ylabel(yLabel)
     if xLim is not None: plt.xlim(xLim)
     if yLim is not None: plt.ylim(yLim)
+    if label is not None: plt.set_label(label)
 
     if annotate:
         for x1, y1 in zip(x,y):

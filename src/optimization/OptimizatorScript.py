@@ -231,7 +231,7 @@ def optimize():
     for line in lines:
         nodeArray += list(network.get(line))
     
-    Plotter.plot_node_list(nodeArray, add=True, annotate=False)
+    Plotter.plot_node_list(nodeArray, add=True, annotate=False, label='Posições sem ajuste')
     nodesCoordinates = [node.getCoordinates() for node in nodeArray]
     GeoUtils.writeGeoJSON(nodesCoordinates, OUTPUT_PATH + 'second.geojson')
     
@@ -262,7 +262,7 @@ def optimize():
     GeoUtils.writeGeoJSON(nodesCoordinates, OUTPUT_PATH + 'result.geojson')
 
     Plotter.plot_node_list(nodeArray, title='Final Network Layout', xLabel='Grid Coordinate (m)', yLabel='Grid Coordinate (m)',
-                            color='red', annotate=False)
+                            color='red', annotate=False, label='Posições ajustadas')
 
 
 if __name__ == '__main__':

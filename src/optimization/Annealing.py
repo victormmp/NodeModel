@@ -75,6 +75,7 @@ class PositionAnnealing(Annealer):
     def move(self):
         index = random.randint(0, len(self.state) - 1)
         node: Node = self.state[index]
+        currentPosition = node.getCoordinates()
         nodeInitialPosition = self.initialPositions[index]
 
         nextLon = random.normalvariate(node.longitude, 0.1)
@@ -86,7 +87,7 @@ class PositionAnnealing(Annealer):
 
         # if self.distance(node.getCoordinates(), nodeInitialPosition) > self.step:
         if vincenty(node.getCoordinates(), nodeInitialPosition)*1000 > self.step:
-            node.setCoordinates(nodeInitialPosition, latLon=True)
+            node.setCoordinates(currentPosition, latLon=True)
         
         self.state[index] = node
     
