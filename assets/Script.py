@@ -6,8 +6,8 @@ from src.model.NetNode import Node, Link
 from src.model.RadioModels import ZigBee
 import src.model.GlobalParameters as gp
 from sklearn import metrics
-import scipy.optimize as scpy
 import src.utils.OptimizationAlgorithms as opt
+import matplotlib.pyplot as plt
 
 sys.path.insert(0, r'../')
 files = os.listdir(r'./')
@@ -69,7 +69,7 @@ def error_func(d):
     return err
 
 #%% OPTIMIZE D0
-MAX_ITERATION = 100
+MAX_ITERATION = 2000
 
 iteration = 0
 result_list = []
@@ -79,5 +79,12 @@ while iteration < MAX_ITERATION:
     
 result = np.mean(result_list)
 print(result)
+
+#%% Histogram
+
+plt.hist(result_list)
+plt.title('Histograma do valor de d0')
+plt.ylabel('Ocorrências')
+plt.xlabel('Valor para d0 (m)')
     
     

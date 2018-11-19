@@ -7,13 +7,14 @@ import src.NetworkModel as NetworkModel
 import src.model.GlobalParameters as GlobalParameters
 import src.optimization.PreProcess as PreProcess
 import src.model.LinkService as LinkService
+from settings import OUTPUT_PATH
 import numpy as np
 import scipy.optimize as spOpt
 import random
 import copy
 import logging
 import math
-from src.utils import LoggerUtils, Plotter
+from src.utils import LoggerUtils, Plotter, GeoUtils
 from src.utils.StopWatch import StopWatch
 import src.optimization.Evolutionary as Evolution
 from src.optimization.Annealing import DistanceAnnealing, PositionAnnealing
@@ -61,7 +62,7 @@ def optimize():
     stopwatch = StopWatch()
 
     ANNEAL_AREA = False
-    logger = LoggerUtils.configure_log(name='Optimization script', use_console=True)
+    logger = LoggerUtils.configure_log(name='Optimization script', use_console=True, use_file=True)
 
     click.clear()
 
@@ -143,10 +144,13 @@ def optimize():
     nodeArray = [network.get('SINK')]
     for line in lines:
         nodeArray += list(network.get(line))
-    Plotter.plot_node_list(nodeArray, title='First Optimization Result', xLabel='Grid Coordinate (m)', yLabel='Grid Coordinate (m)')
+    # Plotter.plot_node_list(nodeArray, title='First Optimization Result', xLabel='Grid Coordinate (m)', yLabel='Grid Coordinate (m)')
+
+    nodesCoordinates = [node.getCoordinates() for node in nodeArray]
+    GeoUtils.writeGeoJSON(nodesCoordinates, OUTPUT_PATH + 'first.geojson')
 
     # Main loop for the second optimization
-    while generation < metrics.MAX_GENERATIONS and fitness.minValidLinks >= 2:
+    while generation < metrics.MAX_GENERATIONS and fitness.minValidLinks >= 3:
         # First find the min number n of nodes of node at each side of the nxn grid
         
         generation += 1
@@ -227,19 +231,24 @@ def optimize():
     for line in lines:
         nodeArray += list(network.get(line))
     
-    Plotter.plot_node_list(nodeArray, title='Second Optimization Result', xLabel='Grid Coordinate (m)', yLabel='Grid Coordinate (m)')
-
+    Plotter.plot_node_list(nodeArray, add=True, annotate=False)
+    nodesCoordinates = [node.getCoordinates() for node in nodeArray]
+    GeoUtils.writeGeoJSON(nodesCoordinates, OUTPUT_PATH + 'second.geojson')
+    
     logger.info('Annealing nodes. Current configuration have %s nodes.' %(len(nodeArray)))
     annealer = PositionAnnealing(nodeArray)
     annealer.copy_strategy = metrics.COPY_STRATEGY
 
-    click.secho('Calibrating annealer.', fg='yellow')
+    # click.secho('Calibrating annealer.', fg='yellow')
 
-    auto_schedule = annealer.auto(minutes=1)
-    annealer.set_schedule(auto_schedule)
+    # auto_schedule = annealer.auto(minutes=1)
+    # annealer.set_schedule(auto_schedule)
 
-    click.secho('Annealer calibrated!', fg='green')
-    logger.info('Annealer parameters: {}'.format(auto_schedule))
+    # click.secho('Annealer calibrated!', fg='green')
+    # logger.info('Annealer parameters: {}'.format(auto_schedule))
+
+    annealer.Tmax=1.5
+    annealer.Tmin=1e-10
 
     nodeArray, energy = annealer.anneal()
 
@@ -247,8 +256,13 @@ def optimize():
     
     click.secho('Finished Optimization', fg='green')
     logger.info('Finished network optimization. Total elapsed time: {}'.format(stopwatch.read()))
+    logger.info('Writing result geoJSON at {}.'.format(OUTPUT_PATH))
 
-    Plotter.plot_node_list(nodeArray, title='Final Network Layout', xLabel='Grid Coordinate (m)', yLabel='Grid Coordinate (m)')
+    nodesCoordinates = [node.getCoordinates() for node in nodeArray]
+    GeoUtils.writeGeoJSON(nodesCoordinates, OUTPUT_PATH + 'result.geojson')
+
+    Plotter.plot_node_list(nodeArray, title='Representação gráfica da Rede', xLabel='Longitude', yLabel='Latitude',
+                            color='red', annotate=False)
 
 
 if __name__ == '__main__':

@@ -138,7 +138,8 @@ def loadConstantsFromFile(file_path=CONSTANTS_FILE):
 
     SINK_NODE = nodeList.pop(0)
 
-    nodeCoordinate = [node.getPoints() for node in nodeList]
+    # nodeCoordinate = [node.getPoints() for node in nodeList]
+    nodeCoordinate = [node.getCoordinates() for node in nodeList]
 
     N1_DIM = dim(start=nodeCoordinate[0], end=nodeCoordinate[1])
     N2_DIM = dim(start=nodeCoordinate[2], end=nodeCoordinate[3])

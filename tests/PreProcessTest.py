@@ -28,11 +28,12 @@ def testLine(nodes, from_file):
     else:
         nodeList = PreProcess.generateNodeListForLine(nodes, gp.N1_DIM)
 
-    x = [node.xPos for node in nodeList]
-    y = [node.yPos for node in nodeList]
+    x = [node.longitude for node in nodeList]
+    y = [node.latitude for node in nodeList]
     plt.plot(x,y, 'o')
+    plt.title('Distribuição em Linha para {} roteadores'.format(nodes))
     for x1, y1 in zip(x,y):
-        plt.annotate(('%s, %s' %(x1, y1)), xy=(x1, y1))
+        plt.annotate(('%.2f, %.2f' %(x1, y1)), xy=(x1, y1))
 
     plt.show()
 
@@ -49,10 +50,14 @@ def testArea(nodes, from_file):
     else:
         nodes2 = PreProcess.generateNodeListForArea(nodes, gp.N4_DIM)
 
-    x = [node.xPos for node in nodes2]
-    y = [node.yPos for node in nodes2]
+    x = [node.longitude for node in nodes2]
+    y = [node.latitude for node in nodes2]
     plt.plot(x,y, 'o')
+    plt.title('Distribuição em Área para {} x {} roteadores'.format(nodes, nodes))
     for x1, y1 in zip(x,y):
-        plt.annotate(('%s, %s' %(x1, y1)), xy=(x1, y1))
+        plt.annotate(('%0.2f, %0.2f' %(x1, y1)), xy=(x1, y1))
 
     plt.show()
+
+if __name__== '__main__':
+    testLine(5, True)

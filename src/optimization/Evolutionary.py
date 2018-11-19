@@ -75,7 +75,7 @@ def adaptability(population: list):
     ranked_pop = []
 
     # Constraints
-    MIN_NUMBER_OF_VALID_LINKS = 2
+    MIN_NUMBER_OF_VALID_LINKS = 3
 
     # Penalty functions
     penalty = lambda links, fitness: (links < MIN_NUMBER_OF_VALID_LINKS) * 1000 + fitness

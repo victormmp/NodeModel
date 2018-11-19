@@ -15,9 +15,11 @@ import numpy as np
 
 class Node:
 
-    def __init__(self, xPos=None, yPos=None):
+    def __init__(self, xPos=None, yPos=None, latitude=None, longitude=None):
         self.xPos = xPos
         self.yPos = yPos
+        self.latitude = latitude
+        self.longitude = longitude
 
     def setLatLon(self, latitude, longitude):
         self.latitude = latitude

@@ -1,0 +1,37 @@
+[2018-11-08 18:29:06,146 >> Starting first optimization loop.
+[2018-11-08 18:29:14,149 >> [Gen 1] Optimal:{solution: [7, 2, 3, 5], fitness: 17, min_links: 3}
+[2018-11-08 18:29:21,598 >> [Gen 2] Optimal:{solution: [7, 2, 3, 5], fitness: 17, min_links: 3}
+[2018-11-08 18:29:28,907 >> [Gen 3] Optimal:{solution: [7, 2, 3, 5], fitness: 17, min_links: 3}
+[2018-11-08 18:29:35,960 >> [Gen 4] Optimal:{solution: [7, 2, 3, 5], fitness: 17, min_links: 3}
+[2018-11-08 18:29:42,843 >> [Gen 5] Optimal:{solution: [7, 2, 3, 5], fitness: 17, min_links: 3}
+[2018-11-08 18:29:49,617 >> [Gen 6] Optimal:{solution: [7, 2, 3, 5], fitness: 17, min_links: 3}
+[2018-11-08 18:29:56,189 >> [Gen 7] Optimal:{solution: [7, 2, 3, 5], fitness: 17, min_links: 3}
+[2018-11-08 18:30:02,714 >> [Gen 8] Optimal:{solution: [7, 2, 3, 5], fitness: 17, min_links: 3}
+[2018-11-08 18:30:09,327 >> [Gen 9] Optimal:{solution: [7, 2, 3, 5], fitness: 17, min_links: 3}
+[2018-11-08 18:30:15,542 >> [Gen 10] Optimal:{solution: [7, 2, 3, 5], fitness: 17, min_links: 3}
+[2018-11-08 18:30:21,173 >> [Gen 11] Optimal:{solution: [7, 2, 2, 5], fitness: 16, min_links: 3}
+[2018-11-08 18:30:26,774 >> [Gen 12] Optimal:{solution: [7, 2, 2, 5], fitness: 16, min_links: 3}
+[2018-11-08 18:30:32,280 >> [Gen 13] Optimal:{solution: [7, 2, 2, 5], fitness: 16, min_links: 3}
+[2018-11-08 18:30:37,694 >> [Gen 14] Optimal:{solution: [7, 2, 2, 5], fitness: 16, min_links: 3}
+[2018-11-08 18:30:42,935 >> [Gen 15] Optimal:{solution: [7, 2, 2, 5], fitness: 16, min_links: 3}
+[2018-11-08 18:30:48,208 >> [Gen 16] Optimal:{solution: [7, 2, 2, 5], fitness: 16, min_links: 3}
+[2018-11-08 18:30:53,418 >> [Gen 17] Optimal:{solution: [7, 2, 2, 5], fitness: 16, min_links: 3}
+[2018-11-08 18:30:58,676 >> [Gen 18] Optimal:{solution: [7, 2, 2, 5], fitness: 16, min_links: 3}
+[2018-11-08 18:31:03,870 >> [Gen 19] Optimal:{solution: [7, 2, 2, 5], fitness: 16, min_links: 3}
+[2018-11-08 18:31:09,190 >> [Gen 20] Optimal:{solution: [7, 2, 2, 5], fitness: 16, min_links: 3}
+[2018-11-08 18:31:14,369 >> [Gen 21] Optimal:{solution: [7, 2, 2, 5], fitness: 16, min_links: 3}
+[2018-11-08 18:31:14,385 >> Finished first optimization with 21 generations. Total time: 0:02:14.345400.
+[2018-11-08 18:31:14,385 >> OPTIMAL FOR FIRST OPTIMIZATION: N1: 7, N2: 2, N3: 2, N4: 5 
+[2018-11-08 18:31:14,494 >> Starting second optimization.
+[2018-11-08 18:31:14,494 >> Initial genome [N1 = 7, N2 = 2, N3 = 2, N4 = 5].
+[2018-11-08 18:31:14,556 >> [Gen 1] Fitness for N4 = 4: Fitness(minValidLinks=3, minPRR=1.0, meanPRR=13.964285714285714)
+[2018-11-08 18:31:14,603 >> [Gen 2] Fitness for N4 = 3: Fitness(minValidLinks=3, minPRR=1.0, meanPRR=8.285714285714286)
+[2018-11-08 18:31:14,634 >> [Gen 3] Fitness for N4 = 2: Fitness(minValidLinks=3, minPRR=1.0, meanPRR=5.25)
+[2018-11-08 18:31:14,650 >> [Gen 4] Fitness for N4 = 1: Fitness(minValidLinks=0, minPRR=3.2033329522929615e-145, meanPRR=3.3076923076923075)
+[2018-11-08 18:31:14,665 >> Finished second optimization with 4 generations. Total time: 0:00:00.171600.
+[2018-11-08 18:31:14,665 >> Optimal for second optimization: N1: 7, N2: 2, N3: 2, N4: 2 
+[2018-11-08 18:31:14,665 >> Fitness for second optimization: Fitness(minValidLinks=3, minPRR=1.0, meanPRR=5.25)
+[2018-11-08 18:31:14,681 >> Finished second optimization. Nodes positions inside area defined. 4 nodes installed.
+[2018-11-08 18:31:14,837 >> Annealing nodes. Current configuration have 16 nodes.
+[2018-11-08 18:50:04,121 >> Finished network optimization. Total elapsed time: 0:21:04.081800
+[2018-11-08 18:50:04,121 >> Writing result geoJSON at ./output/.

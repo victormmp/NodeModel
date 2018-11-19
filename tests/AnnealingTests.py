@@ -48,8 +48,8 @@ def test():
     plot(nodes)
 
 def plot(nodes, add=False, color='blue'):
-    x = [node.xPos for node in nodes]
-    y = [node.yPos for node in nodes]
+    x = [node.longitude for node in nodes]
+    y = [node.latitude for node in nodes]
     plt.plot(x,y, 'o', c=color)
     for x1, y1 in zip(x,y):
         plt.annotate(('%s, %s' %(x1, y1)), xy=(x1, y1))

@@ -9,8 +9,8 @@ def configure_log(level=logging.DEBUG, name=None, use_file=False, use_console=Fa
         filename = os.path.join('logs', name + ".log")
         file_handler = logging.FileHandler(filename, 'w', 'utf-8')
 
-        file_handler.setLevel(logging.DEBUG)
-        file_format = logging.Formatter('%(message)s')
+        file_handler.setLevel(logging.INFO)
+        file_format = logging.Formatter('[%(asctime)s >> %(message)s')
         file_handler.setFormatter(file_format)
         logger.addHandler(file_handler)
 
